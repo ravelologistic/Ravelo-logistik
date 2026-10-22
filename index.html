@@ -34,6 +34,8 @@ input,select{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:8px;
 </section>
 <section id="page-packages" class="hidden"><div class="panel"><h3 id="formTitle">Input Paket Baru</h3><form id="packageForm"><div class="formgrid">
 <div class="field"><label>Nama pengirim *</label><input id="sender" required></div><div class="field"><label>Nama penerima *</label><input id="receiver" required></div>
+<div class="field"><label>Alamat detail penerima *</label><textarea id="recipient_address" required></textarea></div>
+<div class="field"><label>Nomor HP penerima *</label><input id="recipient_phone" type="tel" required placeholder="Contoh: 081234567890"></div>
 <div class="field"><label>Kota asal *</label><input id="origin" required></div><div class="field"><label>Kota tujuan *</label><input id="destination" required></div>
 <div class="field"><label>Jenis paket</label><select id="kind"><option>Dokumen</option><option>Barang</option><option>Makanan</option><option>Lainnya</option></select></div>
 <div class="field"><label>Status</label><select id="status"><option>Diproses</option><option>Dalam Pengiriman</option><option>Terkirim</option><option>Tertunda</option></select></div>
