@@ -66,7 +66,19 @@ const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&
 const badge=s=>`<span class="tag ${s==='Terkirim'?'delivered':s==='Tertunda'?'problem':s==='Dalam Pengiriman'?'process':''}">${esc(s)}</span>`;
 function makeResi(){return 'RVL'+Date.now().toString().slice(-8)+Math.floor(Math.random()*10)}
 function toUi(row){return {...row, date:row.date || (row.created_at ? String(row.created_at).slice(0,10) : '')};}
-function toDb(data){return {sender:data.sender,receiver:data.receiver,origin:data.origin,destination:data.destination,kind:data.kind,status:data.status,date:data.date||null};}
+function toDb(data){
+  return {
+    sender: data.sender,
+    receiver: data.receiver,
+    recipient_address: data.recipient_address,
+    recipient_phone: data.recipient_phone,
+    origin: data.origin,
+    destination: data.destination,
+    kind: data.kind,
+    status: data.status,
+    date: data.date || null
+  };
+  }
 async function loadPackages(showError=true){
   if(!initSupabase()) return false;
   const {data,error}=await sb.from('packages').select('*').order('created_at',{ascending:false});
