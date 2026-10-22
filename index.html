@@ -113,7 +113,9 @@ function render(){
 }
 $('packageSearch').addEventListener('input',render);
 $('packageForm').addEventListener('submit',async e=>{
-  e.preventDefault();const data={sender:$('sender').value.trim(),receiver:$('receiver').value.trim(),origin:$('origin').value.trim(),destination:$('destination').value.trim(),kind:$('kind').value,status:$('status').value};
+  
+e.preventDefault();const data={sender:$('sender').value.trim(),receiver:$('receiver').value.trim(),recipient_address:$('recipient_address').value.trim(),recipient_phone:$('recipient_phone').value.trim(),origin:$('origin').value.trim(),destination:$('destination').value.trim(),kind:$('kind').value,status:$('status').value};
+
   if(!initSupabase()) return;
   const wasEditing=editId!==null; let result;
   if(wasEditing){result=await sb.from('packages').update(toDb(data)).eq('id',editId).select().single();}
