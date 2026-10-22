@@ -8,29 +8,56 @@
 :root{--navy:#14213d;--blue:#2563eb;--pale:#eff6ff;--bg:#f4f7fb;--text:#1f2937;--muted:#64748b;--line:#e2e8f0}
 *{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
 button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:9px;padding:10px 14px;background:var(--blue);color:white;font-weight:700}
-input,select{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:8px;background:white}
+input,select,textarea{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:8px;background:white}textarea{min-height:82px;resize:vertical}
 .login-wrap{min-height:100vh;display:grid;place-items:center;padding:20px;background:linear-gradient(135deg,#14213d,#2563eb)}
 .login{background:#fff;border-radius:18px;padding:30px;width:min(420px,100%);box-shadow:0 20px 60px #0003}.logo{font-size:25px;font-weight:800;color:var(--navy)}.logo span{color:var(--blue)}.sub{color:var(--muted);line-height:1.5}.field{margin:14px 0}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:7px}.full{width:100%}.error{color:#b91c1c;font-size:13px;min-height:18px}
 .app{display:none;min-height:100vh}.sidebar{position:fixed;inset:0 auto 0 0;width:235px;background:var(--navy);color:white;padding:24px 15px;display:flex;flex-direction:column;gap:8px}.sidebar .logo{color:white;padding:0 10px 22px}.nav{background:transparent;text-align:left;color:#dbeafe;font-weight:600}.nav.active,.nav:hover{background:#ffffff1c;color:white}.sidebottom{margin-top:auto;color:#cbd5e1;font-size:12px;padding:10px}.main{margin-left:235px;padding:26px;max-width:1500px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px}.top h1{font-size:25px;margin:0 0 6px}.muted{color:var(--muted);font-size:13px}.panel{background:white;border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:18px;box-shadow:0 3px 12px #0f172a05}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}.stat{background:white;border:1px solid var(--line);border-radius:14px;padding:18px}.stat small{color:var(--muted)}.stat strong{display:block;font-size:27px;margin-top:9px;color:var(--navy)}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.formgrid .field{margin:0}.formgrid .wide{grid-column:1/-1}.tablewrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}th{color:var(--muted);font-size:12px;background:#f8fafc}.tag{padding:5px 8px;border-radius:20px;font-size:11px;font-weight:700;background:#e0f2fe;color:#075985}.tag.delivered{background:#dcfce7;color:#166534}.tag.process{background:#fef3c7;color:#92400e}.tag.problem{background:#fee2e2;color:#991b1b}.actions{display:flex;gap:7px}.secondary{background:#e2e8f0;color:#1e293b}.danger{background:#dc2626}.hidden{display:none!important}.notice{background:var(--pale);border-radius:10px;padding:13px;color:#1e40af;font-size:13px;line-height:1.5}.empty{text-align:center;color:var(--muted);padding:24px}
+.public-page{min-height:100vh;background:linear-gradient(145deg,#14213d,#1d4ed8);padding:26px 14px 50px}.public-wrap{max-width:850px;margin:auto}.public-head{color:white;text-align:center;padding:22px 10px}.public-head .logo{color:white;font-size:29px}.public-head p{color:#dbeafe}.public-panel{background:white;border-radius:16px;padding:22px;margin-bottom:16px;box-shadow:0 14px 40px #0002}.public-form{display:grid;grid-template-columns:1fr auto;gap:10px}.public-form button{min-width:130px}.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.result-item{padding:12px;background:#f8fafc;border-radius:9px;overflow-wrap:anywhere}.result-item small{display:block;color:var(--muted);margin-bottom:6px}.result-item strong{font-size:14px}.timeline{border-left:2px solid #bfdbfe;margin:18px 0 0 7px;padding-left:18px}.timeline-step{position:relative;padding:0 0 18px}.timeline-step:before{content:"";position:absolute;left:-25px;top:3px;width:10px;height:10px;border-radius:50%;background:var(--blue);border:3px solid #dbeafe}.public-footer{text-align:center;color:#dbeafe;font-size:12px;margin-top:20px}
 @media(max-width:850px){.sidebar{position:static;width:auto;min-height:auto;flex-direction:row;flex-wrap:wrap;padding:12px}.sidebar .logo{width:100%;padding:8px}.nav{font-size:12px;padding:9px}.sidebottom{display:none}.main{margin-left:0;padding:16px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2{grid-template-columns:1fr}.top h1{font-size:21px}}
-@media(max-width:480px){.formgrid{grid-template-columns:1fr}.formgrid .wide{grid-column:auto}.stats{gap:8px}.stat{padding:13px}.stat strong{font-size:23px}}
+@media(max-width:480px){.formgrid{grid-template-columns:1fr}.formgrid .wide{grid-column:auto}.stats{gap:8px}.stat{padding:13px}.stat strong{font-size:23px}.public-form{grid-template-columns:1fr}.public-form button{width:100%}.result-grid{grid-template-columns:1fr}.public-panel{padding:16px}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-<div id="loginWrap" class="login-wrap"><form id="loginForm" class="login">
+<!-- Halaman publik: pelanggan bisa cek resi tanpa login -->
+<section id="publicPage" class="public-page">
+  <div class="public-wrap">
+    <header class="public-head">
+      <div class="logo">RAVELO <span>LOGISTIC</span></div>
+      <h1>Cek Resi Pengiriman</h1>
+      <p>Lacak status dan informasi perjalanan paket Anda.</p>
+    </header>
+    <div class="public-panel">
+      <form id="publicTrackForm" class="public-form">
+        <input id="publicTrackNumber" placeholder="Masukkan nomor resi, contoh RVL12345678" aria-label="Nomor resi" required>
+        <button type="submit">Lacak Paket</button>
+      </form>
+      <div id="publicTrackResult" aria-live="polite"></div>
+    </div>
+    <div class="public-panel">
+      <b>Butuh bantuan?</b>
+      <p class="sub">Pastikan nomor resi diketik dengan benar. Informasi yang ditampilkan hanya informasi pelacakan yang diizinkan untuk pelanggan.</p>
+      <button type="button" class="secondary" id="adminLoginButton">Masuk Admin</button>
+    </div>
+    <div class="public-footer">© Ravelo Logistic</div>
+  </div>
+</section>
+
+<div id="loginWrap" class="login-wrap hidden"><form id="loginForm" class="login">
 <div class="logo">RAVELO <span>LOGISTIC</span></div><p class="sub">Sistem Informasi Manajemen Ekspedisi<br>Masuk untuk mengelola data paket dan pengiriman.</p>
-<div class="field"><label>Nama pengguna</label><input id="username" autocomplete="username" placeholder="Masukkan nama pengguna" required></div>
-<div class="field"><label>Kata sandi</label><input id="password" type="password" autocomplete="current-password" placeholder="Masukkan kata sandi" required></div>
-<div id="loginError" class="error"></div><button class="full" type="submit">Masuk ke Dashboard</button><p class="muted">Demo login: <b>admin</b> / <b>admin123</b></p>
+<div class="field"><label>Nama pengguna</label><input id="username" autocomplete="username" placeholder="Nama pengguna" required></div>
+<div class="field"><label>Kata sandi</label><input id="password" type="password" autocomplete="current-password" placeholder="Kata sandi" required></div>
+<div id="loginError" class="error"></div><button class="full" type="submit">Masuk ke Dashboard</button><p class="muted">Demo login admin: <b>admin</b> / <b>admin123</b></p>
+<button class="secondary full" type="button" id="backToTracking" style="margin-top:10px">Kembali ke Cek Resi</button>
 </form></div>
+
 <div id="app" class="app">
 <aside class="sidebar"><div class="logo">RAVELO <span>LOGISTIC</span></div>
-<button class="nav active" data-page="dashboard">▦ Dashboard</button><button class="nav" data-page="packages">▤ Data Paket</button><button class="nav" data-page="tracking">⌕ Lacak Paket</button><button class="nav" data-page="distribution">⇢ Distribusi</button><button class="nav" data-page="reports">▥ Laporan</button><button class="nav" data-page="about">ⓘ Tentang Sistem</button><div class="sidebottom">Sistem demo untuk tugas kuliah<br>Data paket tersimpan di database online.</div></aside>
-<main class="main"><div class="top"><div><h1 id="pageTitle">Dashboard</h1><div class="muted" id="pageSub">Ringkasan data dan aktivitas paket</div></div><button class="secondary" id="logout">Keluar</button></div>
+<button class="nav active" data-page="dashboard">▦ Dashboard</button><button class="nav" data-page="packages">▤ Data Paket</button><button class="nav" data-page="tracking">⌕ Lacak Paket</button><button class="nav" data-page="distribution">⇢ Distribusi</button><button class="nav" data-page="reports">▥ Laporan</button><button class="nav" data-page="about">ⓘ Tentang Sistem</button><div class="sidebottom">Prototipe sistem ekspedisi<br>Hubungkan dengan kebijakan akses Supabase yang aman.</div></aside>
+<main class="main"><div class="top"><div><h1 id="pageTitle">Dashboard</h1><div class="muted" id="pageSub">Ringkasan data dan aktivitas paket</div></div><button class="secondary" id="logout">Keluar Admin</button></div>
 <section id="page-dashboard">
 <div class="stats"><div class="stat"><small>Total Paket</small><strong id="statTotal">0</strong></div><div class="stat"><small>Dalam Proses</small><strong id="statProcess">0</strong></div><div class="stat"><small>Dalam Pengiriman</small><strong id="statShip">0</strong></div><div class="stat"><small>Terkirim</small><strong id="statDone">0</strong></div></div>
-<div class="grid2"><div class="panel"><h3>Aktivitas Paket Terbaru</h3><div id="recentTable" class="tablewrap"></div></div><div class="panel"><h3>Akses Cepat</h3><p class="sub">Kelola pengiriman dalam satu tempat.</p><button data-goto="packages">＋ Input Paket</button> <button class="secondary" data-goto="tracking">Lacak Resi</button><div class="notice" style="margin-top:18px">Catatan: data paket dimuat dari database online Supabase.</div></div></div>
+<div class="grid2"><div class="panel"><h3>Aktivitas Paket Terbaru</h3><div id="recentTable" class="tablewrap"></div></div><div class="panel"><h3>Akses Cepat</h3><p class="sub">Kelola pengiriman dalam satu tempat.</p><button data-goto="packages">＋ Input Paket</button> <button class="secondary" data-goto="tracking">Lacak Resi</button><div class="notice" style="margin-top:18px">Pencarian publik menggunakan fungsi database khusus, bukan membaca seluruh tabel paket.</div></div></div>
 </section>
 <section id="page-packages" class="hidden"><div class="panel"><h3 id="formTitle">Input Paket Baru</h3><form id="packageForm"><div class="formgrid">
 <div class="field"><label>Nama pengirim *</label><input id="sender" required></div><div class="field"><label>Nama penerima *</label><input id="receiver" required></div>
@@ -39,107 +66,105 @@ input,select{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:8px;
 <div class="field"><label>Kota asal *</label><input id="origin" required></div><div class="field"><label>Kota tujuan *</label><input id="destination" required></div>
 <div class="field"><label>Jenis paket</label><select id="kind"><option>Dokumen</option><option>Barang</option><option>Makanan</option><option>Lainnya</option></select></div>
 <div class="field"><label>Status</label><select id="status"><option>Diproses</option><option>Dalam Pengiriman</option><option>Terkirim</option><option>Tertunda</option></select></div>
+<div class="field"><label>Tanggal paket dikirim *</label><input id="dispatch_date" type="date" required></div>
+<div class="field"><label>Jam paket dikirim *</label><input id="dispatch_time" type="time" required></div>
+<div class="field"><label>Tanggal perkiraan tiba *</label><input id="estimated_arrival_date" type="date" required></div>
 <div class="field wide actions"><button type="submit" id="saveBtn">Simpan Paket</button><button type="button" class="secondary hidden" id="cancelEdit">Batal Edit</button></div></div></form></div>
 <div class="panel"><div class="top"><div><h3>Daftar Paket</h3><div class="muted">Cari, ubah status, edit, atau hapus data paket.</div></div></div><div class="field"><input id="packageSearch" placeholder="Cari nomor resi, pengirim, penerima, tujuan..."></div><div id="packageTable" class="tablewrap"></div></div></section>
 <section id="page-tracking" class="hidden"><div class="panel"><h3>Lacak Paket Berdasarkan Nomor Resi</h3><form id="trackForm" class="formgrid"><div class="field"><label>Nomor resi</label><input id="trackNumber" placeholder="Contoh: RVL12345678" required></div><div class="field" style="align-self:end"><button type="submit">Lacak Paket</button></div></form><div id="trackResult"></div></div></section>
 <section id="page-distribution" class="hidden"><div class="panel"><h3>Tahapan Distribusi</h3><p class="sub">Ringkasan posisi proses berdasarkan status paket.</p><div id="distributionTable" class="tablewrap"></div></div></section>
 <section id="page-reports" class="hidden"><div class="panel"><h3>Laporan Paket</h3><p class="sub">Rekap data paket yang tersimpan di database online.</p><button id="exportCsv">Unduh Laporan CSV</button><div id="reportTable" class="tablewrap" style="margin-top:15px"></div></div></section>
-<section id="page-about" class="hidden"><div class="panel"><h3>Tentang Ravelo Logistic</h3><p>Ravelo Logistic adalah prototipe Sistem Informasi Ekspedisi untuk kebutuhan tugas kuliah dan demonstrasi presentasi.</p><ul><li>Dashboard ringkasan data dan aktivitas paket</li><li>Input, edit, hapus, dan pencarian paket</li><li>Pelacakan menggunakan nomor resi</li><li>Pemantauan tahapan distribusi</li><li>Ekspor laporan ke CSV</li></ul><div class="notice">Penyimpanan paket menggunakan database online Supabase. Login admin pada prototipe ini masih berupa simulasi di browser, jadi jangan menganggapnya sebagai perlindungan akses yang aman untuk data sensitif.</div></div></section>
+<section id="page-about" class="hidden"><div class="panel"><h3>Tentang Ravelo Logistic</h3><p>Ravelo Logistic adalah prototipe Sistem Informasi Ekspedisi.</p><ul><li>Dashboard ringkasan data dan aktivitas paket</li><li>Input, edit, hapus, dan pencarian paket</li><li>Pelacakan nomor resi tanpa login pelanggan</li><li>Tanggal dan jam pengiriman serta tanggal perkiraan tiba</li><li>Pemantauan tahapan distribusi dan ekspor CSV</li></ul><div class="notice">Catatan keamanan: login admin yang tertanam dalam JavaScript hanya simulasi dan tidak melindungi operasi database. Sebelum digunakan dengan data nyata, amankan operasi admin memakai Supabase Auth dan kebijakan RLS.</div></div></section>
 </main></div>
 <script>
 const $=id=>document.getElementById(id);
-
-// Isi dengan Project URL dan publishable key dari Supabase.
 const SUPABASE_URL = 'https://cyujkdcewcznocqpxwva.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_SfVtZhW1yddNGBO3WVmhww_2k0epiVv';
 let sb = null;
 function initSupabase(){
-  if(!SUPABASE_URL.startsWith('https://') || SUPABASE_URL.includes('TEMPEL_') || !SUPABASE_PUBLISHABLE_KEY || SUPABASE_PUBLISHABLE_KEY.includes('TEMPEL_')){
-    alert('Isi SUPABASE_URL dan SUPABASE_PUBLISHABLE_KEY di kode terlebih dahulu.'); return false;
-  }
-  if(!sb) sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+  if(!SUPABASE_URL.startsWith('https://') || !SUPABASE_PUBLISHABLE_KEY){alert('Konfigurasi Supabase belum lengkap.');return false;}
+  if(!sb) sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);
   return true;
 }
-
-let packages=[], editId=null, packageChannel=null;
+let packages=[],editId=null,packageChannel=null;
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const badge=s=>`<span class="tag ${s==='Terkirim'?'delivered':s==='Tertunda'?'problem':s==='Dalam Pengiriman'?'process':''}">${esc(s)}</span>`;
 function makeResi(){return 'RVL'+Date.now().toString().slice(-8)+Math.floor(Math.random()*10)}
-function toUi(row){return {...row, date:row.date || (row.created_at ? String(row.created_at).slice(0,10) : '')};}
-function toDb(data){
-  return {
-    sender: data.sender,
-    receiver: data.receiver,
-    recipient_address: data.recipient_address,
-    recipient_phone: data.recipient_phone,
-    origin: data.origin,
-    destination: data.destination,
-    kind: data.kind,
-    status: data.status,
-    date: data.date || null
-  };
-  }
+function toUi(row){return {...row,date:row.date||(row.created_at?String(row.created_at).slice(0,10):'')};}
+function toDb(data){return {sender:data.sender,receiver:data.receiver,recipient_address:data.recipient_address,recipient_phone:data.recipient_phone,origin:data.origin,destination:data.destination,kind:data.kind,status:data.status,date:data.date||null,dispatch_date:data.dispatch_date||null,dispatch_time:data.dispatch_time||null,estimated_arrival_date:data.estimated_arrival_date||null};}
 async function loadPackages(showError=true){
-  if(!initSupabase()) return false;
-  const {data,error}=await sb.from('packages').select('*').order('created_at',{ascending:false});
-  if(error){console.error('Supabase load error:',error);if(showError)alert('Gagal mengambil data Supabase: '+error.message);return false;}
-  packages=(data||[]).map(toUi);render();return true;
+ if(!initSupabase())return false;
+ const {data,error}=await sb.from('packages').select('*').order('created_at',{ascending:false});
+ if(error){console.error(error);if(showError)alert('Gagal mengambil data Supabase: '+error.message);return false;}
+ packages=(data||[]).map(toUi);render();return true;
 }
-async function refreshFromRealtime(){await loadPackages(false);}
-function startRealtime(){
-  if(packageChannel)sb.removeChannel(packageChannel);
-  packageChannel=sb.channel('ravelo-packages-live')
-    .on('postgres_changes',{event:'*',schema:'public',table:'packages'},()=>refreshFromRealtime())
-    .subscribe();
-}
+async function refreshFromRealtime(){await loadPackages(false)}
+function startRealtime(){if(packageChannel)sb.removeChannel(packageChannel);packageChannel=sb.channel('ravelo-packages-live').on('postgres_changes',{event:'*',schema:'public',table:'packages'},()=>refreshFromRealtime()).subscribe();}
+function showAdminLogin(){ $('publicPage').classList.add('hidden');$('app').style.display='none';$('loginWrap').classList.remove('hidden');$('loginError').textContent='';}
+function showPublic(){ $('loginWrap').classList.add('hidden');$('app').style.display='none';$('publicPage').classList.remove('hidden');}
+$('adminLoginButton').onclick=showAdminLogin;$('backToTracking').onclick=showPublic;
 $('loginForm').addEventListener('submit',async e=>{
-  e.preventDefault();
-  if($('username').value==='admin'&&$('password').value==='admin123'){
-    $('loginError').textContent='';$('loginWrap').style.display='none';$('app').style.display='block';
-    const ok=await loadPackages();if(ok)startRealtime();
-  }else $('loginError').textContent='Nama pengguna atau kata sandi salah.';
+ e.preventDefault();
+ // Login ini tetap demo browser-side. Jangan gunakan sebagai satu-satunya keamanan database.
+ if($('username').value==='admin'&&$('password').value==='admin123'){
+  $('loginError').textContent='';$('loginWrap').classList.add('hidden');$('publicPage').classList.add('hidden');$('app').style.display='block';
+  const ok=await loadPackages();if(ok)startRealtime();
+ }else $('loginError').textContent='Nama pengguna atau kata sandi salah.';
 });
-$('logout').onclick=()=>{ $('app').style.display='none';$('loginWrap').style.display='grid';$('password').value='';if(packageChannel){sb.removeChannel(packageChannel);packageChannel=null;}};
+$('logout').onclick=()=>{$('app').style.display='none';if(packageChannel){sb.removeChannel(packageChannel);packageChannel=null;}showPublic();};
 const pageNames={dashboard:['Dashboard','Ringkasan data dan aktivitas paket'],packages:['Data Paket','Input dan pengelolaan data paket'],tracking:['Lacak Paket','Cari paket berdasarkan nomor resi'],distribution:['Distribusi','Pantau tahapan proses pengiriman'],reports:['Laporan','Rekap data dan ekspor CSV'],about:['Tentang Sistem','Informasi tentang Ravelo Logistic']};
-function showPage(p){Object.keys(pageNames).forEach(k=>$('page-'+k).classList.toggle('hidden',k!==p));document.querySelectorAll('.nav').forEach(b=>b.classList.toggle('active',b.dataset.page===p));$('pageTitle').textContent=pageNames[p][0];$('pageSub').textContent=pageNames[p][1];render()}
+function showPage(p){Object.keys(pageNames).forEach(k=>$('page-'+k).classList.toggle('hidden',k!==p));document.querySelectorAll('.nav').forEach(b=>b.classList.toggle('active',b.dataset.page===p));$('pageTitle').textContent=pageNames[p][0];$('pageSub').textContent=pageNames[p][1];render();}
 document.querySelectorAll('.nav').forEach(b=>b.onclick=()=>showPage(b.dataset.page));document.querySelectorAll('[data-goto]').forEach(b=>b.onclick=()=>showPage(b.dataset.goto));
-function table(rows){if(!rows.length)return '<div class="empty">Belum ada data paket.</div>';return `<table><thead><tr><th>Nomor Resi</th><th>Pengirim</th><th>Penerima</th><th>Rute</th><th>Status</th><th>Tanggal</th></tr></thead><tbody>${rows.map(p=>`<tr><td><b>${esc(p.resi)}</b></td><td>${esc(p.sender)}</td><td>${esc(p.receiver)}</td><td>${esc(p.origin)} → ${esc(p.destination)}</td><td>${badge(p.status)}</td><td>${esc(p.date)}</td></tr>`).join('')}</tbody></table>`}
+function table(rows){if(!rows.length)return '<div class="empty">Belum ada data paket.</div>';return `<table><thead><tr><th>Nomor Resi</th><th>Pengirim</th><th>Penerima</th><th>Rute</th><th>Status</th><th>Tanggal Kirim</th></tr></thead><tbody>${rows.map(p=>`<tr><td><b>${esc(p.resi)}</b></td><td>${esc(p.sender)}</td><td>${esc(p.receiver)}</td><td>${esc(p.origin)} → ${esc(p.destination)}</td><td>${badge(p.status)}</td><td>${esc(p.dispatch_date||p.date)}</td></tr>`).join('')}</tbody></table>`}
 function render(){
-  $('statTotal').textContent=packages.length;$('statProcess').textContent=packages.filter(p=>p.status==='Diproses').length;$('statShip').textContent=packages.filter(p=>p.status==='Dalam Pengiriman').length;$('statDone').textContent=packages.filter(p=>p.status==='Terkirim').length;
-  $('recentTable').innerHTML=table([...packages].slice(0,5));
-  const q=($('packageSearch').value||'').toLowerCase();const filtered=packages.filter(p=>[p.resi,p.sender,p.receiver,p.origin,p.destination].join(' ').toLowerCase().includes(q));
-  $('packageTable').innerHTML=filtered.length?`<table><thead><tr><th>Resi</th><th>Pengirim / Penerima</th><th>Rute</th><th>Status</th><th>Aksi</th></tr></thead><tbody>${filtered.map(p=>`<tr><td><b>${esc(p.resi)}</b><br><small>${esc(p.date)}</small></td><td>${esc(p.sender)}<br>→ ${esc(p.receiver)}</td><td>${esc(p.origin)} → ${esc(p.destination)}</td><td><select onchange="changeStatus('${p.id}',this.value)">${['Diproses','Dalam Pengiriman','Terkirim','Tertunda'].map(s=>`<option ${p.status===s?'selected':''}>${s}</option>`).join('')}</select></td><td><div class="actions"><button class="secondary" onclick="editPackage('${p.id}')">Edit</button><button class="danger" onclick="deletePackage('${p.id}')">Hapus</button></div></td></tr>`).join('')}</tbody></table>`:'<div class="empty">Tidak ada paket yang cocok.</div>';
-  $('distributionTable').innerHTML=table(packages);$('reportTable').innerHTML=table(packages);
+ $('statTotal').textContent=packages.length;$('statProcess').textContent=packages.filter(p=>p.status==='Diproses').length;$('statShip').textContent=packages.filter(p=>p.status==='Dalam Pengiriman').length;$('statDone').textContent=packages.filter(p=>p.status==='Terkirim').length;
+ $('recentTable').innerHTML=table([...packages].slice(0,5));
+ const q=($('packageSearch').value||'').toLowerCase();const filtered=packages.filter(p=>[p.resi,p.sender,p.receiver,p.origin,p.destination].join(' ').toLowerCase().includes(q));
+ $('packageTable').innerHTML=filtered.length?`<table><thead><tr><th>Resi</th><th>Pengirim / Penerima</th><th>Rute</th><th>Status</th><th>Tanggal Kirim</th><th>Aksi</th></tr></thead><tbody>${filtered.map(p=>`<tr><td><b>${esc(p.resi)}</b></td><td>${esc(p.sender)}<br>→ ${esc(p.receiver)}</td><td>${esc(p.origin)} → ${esc(p.destination)}</td><td><select onchange="changeStatus('${p.id}',this.value)">${['Diproses','Dalam Pengiriman','Terkirim','Tertunda'].map(s=>`<option ${p.status===s?'selected':''}>${s}</option>`).join('')}</select></td><td>${esc(p.dispatch_date||p.date)}</td><td><div class="actions"><button class="secondary" onclick="editPackage('${p.id}')">Edit</button><button class="danger" onclick="deletePackage('${p.id}')">Hapus</button></div></td></tr>`).join('')}</tbody></table>`:'<div class="empty">Tidak ada paket yang cocok.</div>';
+ $('distributionTable').innerHTML=table(packages);$('reportTable').innerHTML=table(packages);
 }
 $('packageSearch').addEventListener('input',render);
 $('packageForm').addEventListener('submit',async e=>{
-  
-e.preventDefault();const data={sender:$('sender').value.trim(),receiver:$('receiver').value.trim(),recipient_address:$('recipient_address').value.trim(),recipient_phone:$('recipient_phone').value.trim(),origin:$('origin').value.trim(),destination:$('destination').value.trim(),kind:$('kind').value,status:$('status').value};
-
-  if(!initSupabase()) return;
-  const wasEditing=editId!==null; let result;
-  if(wasEditing){result=await sb.from('packages').update(toDb(data)).eq('id',editId).select().single();}
-  else {const newPackage={...toDb(data),resi:makeResi(),date:new Date().toISOString().slice(0,10)};result=await sb.from('packages').insert(newPackage).select().single();}
-  if(result.error){console.error('Supabase save error:',result.error);alert('Gagal menyimpan paket: '+result.error.message);return;}
-  resetForm();await loadPackages(false);alert(wasEditing?'Data paket berhasil diperbarui.':'Paket berhasil disimpan ke database online.');
+ e.preventDefault();
+ const data={sender:$('sender').value.trim(),receiver:$('receiver').value.trim(),recipient_address:$('recipient_address').value.trim(),recipient_phone:$('recipient_phone').value.trim(),origin:$('origin').value.trim(),destination:$('destination').value.trim(),kind:$('kind').value,status:$('status').value,dispatch_date:$('dispatch_date').value,dispatch_time:$('dispatch_time').value,estimated_arrival_date:$('estimated_arrival_date').value};
+ if(data.estimated_arrival_date<data.dispatch_date){alert('Tanggal perkiraan tiba tidak boleh sebelum tanggal paket dikirim.');return;}
+ if(!initSupabase())return;
+ const wasEditing=editId!==null;let result;
+ if(wasEditing)result=await sb.from('packages').update(toDb(data)).eq('id',editId).select().single();
+ else result=await sb.from('packages').insert({...toDb(data),resi:makeResi(),date:new Date().toISOString().slice(0,10)}).select().single();
+ if(result.error){console.error(result.error);alert('Gagal menyimpan paket: '+result.error.message+'\\nPastikan kolom dispatch_date, dispatch_time, dan estimated_arrival_date sudah ditambahkan ke tabel packages.');return;}
+ resetForm();await loadPackages(false);alert(wasEditing?'Data paket berhasil diperbarui.':'Paket berhasil disimpan.');
 });
-function resetForm(){$('packageForm').reset();editId=null;$('formTitle').textContent='Input Paket Baru';$('saveBtn').textContent='Simpan Paket';$('cancelEdit').classList.add('hidden')}
+function resetForm(){$('packageForm').reset();editId=null;$('formTitle').textContent='Input Paket Baru';$('saveBtn').textContent='Simpan Paket';$('cancelEdit').classList.add('hidden');}
 $('cancelEdit').onclick=resetForm;
-
-window.editPackage=id=>{
-  let p=packages.find(x=>String(x.id)===String(id));
-  if(!p)return;
-  editId=p.id;
-  ['sender','receiver','recipient_address','recipient_phone','origin','destination','kind','status'].forEach(k=>$(k).value=p[k]||'');
-  $('formTitle').textContent='Edit Data Paket';
-  $('saveBtn').textContent='Simpan Perubahan';
-  $('cancelEdit').classList.remove('hidden');
-  window.scrollTo({top:0,behavior:'smooth'});
-};
-
+window.editPackage=id=>{const p=packages.find(x=>String(x.id)===String(id));if(!p)return;editId=p.id;['sender','receiver','recipient_address','recipient_phone','origin','destination','kind','status','dispatch_date','dispatch_time','estimated_arrival_date'].forEach(k=>$(k).value=p[k]||'');$('formTitle').textContent='Edit Data Paket';$('saveBtn').textContent='Simpan Perubahan';$('cancelEdit').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});};
 window.deletePackage=async id=>{if(!initSupabase())return;if(confirm('Hapus data paket ini?')){const {error}=await sb.from('packages').delete().eq('id',id);if(error){console.error(error);alert('Gagal menghapus paket: '+error.message);return;}await loadPackages(false);}};
 window.changeStatus=async(id,status)=>{if(!initSupabase())return;const {error}=await sb.from('packages').update({status}).eq('id',id);if(error){console.error(error);alert('Gagal mengubah status: '+error.message);await loadPackages(false);return;}await loadPackages(false);};
-$('trackForm').addEventListener('submit',e=>{e.preventDefault();let resi=$('trackNumber').value.trim().toUpperCase(),p=packages.find(x=>String(x.resi).toUpperCase()===resi);$('trackResult').innerHTML=p?`<div class="panel" style="margin-top:18px"><h3>${esc(p.resi)}</h3><p>${badge(p.status)}</p><p><b>Pengirim:</b> ${esc(p.sender)}</p><p><b>Penerima:</b> ${esc(p.receiver)}</p><p><b>Rute:</b> ${esc(p.origin)} → ${esc(p.destination)}</p><p><b>Jenis paket:</b> ${esc(p.kind)}</p><p><b>Tanggal input:</b> ${esc(p.date)}</p><div class="notice">Status terbaru: ${esc(p.status)}.</div></div>`:'<p class="error">Nomor resi tidak ditemukan. Periksa kembali nomor resi.</p>'});
-$('exportCsv').onclick=()=>{let headers=['Nomor Resi','Pengirim','Penerima','Kota Asal','Kota Tujuan','Jenis Paket','Status','Tanggal'];let rows=packages.map(p=>[p.resi,p.sender,p.receiver,p.origin,p.destination,p.kind,p.status,p.date]);let csv=[headers,...rows].map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');let blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='laporan-ravelo-logistic.csv';a.click();URL.revokeObjectURL(a.href)};
+
+function renderTrackingCard(p,target){
+ const html=`<div class="panel" style="margin-top:18px"><h2 style="margin-top:0">${esc(p.resi)}</h2><p>${badge(p.status)}</p><div class="result-grid">
+ <div class="result-item"><small>Kota asal</small><strong>${esc(p.origin||'-')}</strong></div>
+ <div class="result-item"><small>Kota tujuan</small><strong>${esc(p.destination||'-')}</strong></div>
+ <div class="result-item"><small>Tanggal paket dikirim</small><strong>${esc(p.dispatch_date||'-')}</strong></div>
+ <div class="result-item"><small>Jam paket dikirim</small><strong>${esc(p.dispatch_time||'-')}</strong></div>
+ <div class="result-item"><small>Tanggal perkiraan tiba</small><strong>${esc(p.estimated_arrival_date||'-')}</strong></div>
+ <div class="result-item"><small>Jenis paket</small><strong>${esc(p.kind||'-')}</strong></div></div>
+ <div class="timeline"><div class="timeline-step"><b>Paket tercatat</b><div class="muted">Nomor resi ${esc(p.resi)}</div></div><div class="timeline-step"><b>Status terkini: ${esc(p.status)}</b><div class="muted">Informasi mengikuti pembaruan dari admin.</div></div></div></div>`;
+ target.innerHTML=html;
+}
+// Tracking publik memanggil RPC yang hanya mengembalikan kolom yang aman untuk publik.
+// SQL fungsi RPC disertakan pada petunjuk setelah file ini.
+async function publicTrack(resi,target){
+ target.innerHTML='<p class="muted">Sedang mencari paket…</p>';
+ if(!initSupabase()){target.innerHTML='<p class="error">Koneksi database belum tersedia.</p>';return;}
+ const {data,error}=await sb.rpc('track_package',{tracking_resi:resi});
+ if(error){console.error('Tracking RPC error:',error);target.innerHTML='<p class="error">Fitur cek resi belum terhubung. Admin perlu menyiapkan fungsi tracking di Supabase terlebih dahulu.</p>';return;}
+ const p=Array.isArray(data)?data[0]:data;
+ if(!p){target.innerHTML='<p class="error">Nomor resi tidak ditemukan. Periksa kembali nomor resi.</p>';return;}
+ renderTrackingCard(p,target);
+}
+$('publicTrackForm').addEventListener('submit',e=>{e.preventDefault();const resi=$('publicTrackNumber').value.trim().toUpperCase();if(resi)publicTrack(resi,$('publicTrackResult'));});
+$('trackForm').addEventListener('submit',async e=>{e.preventDefault();const resi=$('trackNumber').value.trim().toUpperCase();if(resi)publicTrack(resi,$('trackResult'));});
+$('exportCsv').onclick=()=>{const headers=['Nomor Resi','Pengirim','Penerima','Kota Asal','Kota Tujuan','Jenis Paket','Status','Tanggal Paket Dikirim','Jam Paket Dikirim','Tanggal Perkiraan Tiba'];const rows=packages.map(p=>[p.resi,p.sender,p.receiver,p.origin,p.destination,p.kind,p.status,p.dispatch_date,p.dispatch_time,p.estimated_arrival_date]);const csv=[headers,...rows].map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\\r\\n');const blob=new Blob(['\\ufeff'+csv],{type:'text/csv;charset=utf-8;'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='laporan-ravelo-logistic.csv';a.click();URL.revokeObjectURL(a.href);};
 render();
 </script></body></html>
