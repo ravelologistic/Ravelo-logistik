@@ -125,7 +125,18 @@ e.preventDefault();const data={sender:$('sender').value.trim(),receiver:$('recei
 });
 function resetForm(){$('packageForm').reset();editId=null;$('formTitle').textContent='Input Paket Baru';$('saveBtn').textContent='Simpan Paket';$('cancelEdit').classList.add('hidden')}
 $('cancelEdit').onclick=resetForm;
-window.editPackage=id=>{let p=packages.find(x=>String(x.id)===String(id));if(!p)return;editId=p.id;destination','kind','status'])$(k).value=p[k]||'';$('formTitle').textContent='Edit Data Paket';$('saveBtn').textContent='Simpan Perubahan';$('cancelEdit').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'})};
+
+window.editPackage=id=>{
+  let p=packages.find(x=>String(x.id)===String(id));
+  if(!p)return;
+  editId=p.id;
+  ['sender','receiver','recipient_address','recipient_phone','origin','destination','kind','status'].forEach(k=>$(k).value=p[k]||'');
+  $('formTitle').textContent='Edit Data Paket';
+  $('saveBtn').textContent='Simpan Perubahan';
+  $('cancelEdit').classList.remove('hidden');
+  window.scrollTo({top:0,behavior:'smooth'});
+};
+
 window.deletePackage=async id=>{if(!initSupabase())return;if(confirm('Hapus data paket ini?')){const {error}=await sb.from('packages').delete().eq('id',id);if(error){console.error(error);alert('Gagal menghapus paket: '+error.message);return;}await loadPackages(false);}};
 window.changeStatus=async(id,status)=>{if(!initSupabase())return;const {error}=await sb.from('packages').update({status}).eq('id',id);if(error){console.error(error);alert('Gagal mengubah status: '+error.message);await loadPackages(false);return;}await loadPackages(false);};
 $('trackForm').addEventListener('submit',e=>{e.preventDefault();let resi=$('trackNumber').value.trim().toUpperCase(),p=packages.find(x=>String(x.resi).toUpperCase()===resi);$('trackResult').innerHTML=p?`<div class="panel" style="margin-top:18px"><h3>${esc(p.resi)}</h3><p>${badge(p.status)}</p><p><b>Pengirim:</b> ${esc(p.sender)}</p><p><b>Penerima:</b> ${esc(p.receiver)}</p><p><b>Rute:</b> ${esc(p.origin)} → ${esc(p.destination)}</p><p><b>Jenis paket:</b> ${esc(p.kind)}</p><p><b>Tanggal input:</b> ${esc(p.date)}</p><div class="notice">Status terbaru: ${esc(p.status)}.</div></div>`:'<p class="error">Nomor resi tidak ditemukan. Periksa kembali nomor resi.</p>'});
