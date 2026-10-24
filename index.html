@@ -58,6 +58,89 @@ input,select,textarea{transition:border-color .2s ease,box-shadow .2s ease}input
 @keyframes truckDrive{0%,100%{transform:translateX(-8px) rotate(-1deg)}50%{transform:translateX(8px) rotate(1deg)}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
 
+/* RAVELO BOLD EXPRESS — visual refresh only; all existing HTML/JS behavior preserved */
+:root{--navy:#101827;--blue:#ef4b24;--pale:#fff1eb;--bg:#f5f6f8;--text:#172033;--muted:#667085;--line:#e1e5eb;--ravelo-yellow:#ffc928;--ravelo-red:#ef4b24;--ravelo-ink:#101827;scroll-behavior:smooth}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text)}
+button{border-radius:8px;background:var(--ravelo-red);font-weight:800;letter-spacing:.1px;box-shadow:0 4px 0 #b72f13;color:#fff;transition:transform .16s ease,filter .16s ease,box-shadow .16s ease}
+button:hover{transform:translateY(-2px);filter:brightness(1.04);box-shadow:0 6px 0 #b72f13}
+button:active{transform:translateY(1px);box-shadow:0 2px 0 #b72f13}
+.secondary{background:#fff;color:var(--ravelo-ink);border:1px solid #cfd5df;box-shadow:0 3px 0 #d9dde5}
+.secondary:hover{box-shadow:0 5px 0 #d9dde5}
+.danger{background:#b42318;box-shadow:0 4px 0 #7a1710}
+input,select,textarea{border:1px solid #cbd2dd;border-radius:8px;background:#fff;color:#172033}
+input:focus,select:focus,textarea:focus{outline:3px solid #ef4b2429;border-color:var(--ravelo-red);box-shadow:none}
+.login-wrap{background:linear-gradient(135deg,#101827 0%,#18263e 60%,#ef4b24 160%);position:relative;overflow:hidden}
+.login-wrap:before{content:"RAVELO / EXPRESS";position:absolute;left:-18px;bottom:8%;font-size:clamp(42px,10vw,110px);font-weight:1000;letter-spacing:-.06em;color:#ffffff08;white-space:nowrap;transform:rotate(-7deg);pointer-events:none}
+.login{position:relative;border:1px solid #ffffffaa;border-radius:18px;box-shadow:0 24px 70px #0005;border-top:6px solid var(--ravelo-yellow)}
+.logo{font-weight:1000;letter-spacing:-.7px;color:var(--ravelo-ink)}
+.logo span{color:var(--ravelo-red);animation:none;text-shadow:none}
+.sidebar{background:var(--ravelo-ink);border-right:5px solid var(--ravelo-red);box-shadow:8px 0 30px #10182712}
+.sidebar:after{background:#ef4b2418;filter:none;animation:none}
+.sidebar .logo{font-size:23px;letter-spacing:-.6px}
+.nav{border-radius:8px;color:#d7deea;border-left:3px solid transparent;transition:background .15s ease,color .15s ease,border-color .15s ease,transform .15s ease}
+.nav.active,.nav:hover{background:#ffffff12;color:#fff;border-left-color:var(--ravelo-yellow);transform:translateX(2px)}
+.sidebottom{color:#aeb9ca;line-height:1.6}
+.main{padding:clamp(14px,2.5vw,30px)}
+.top{border-bottom:1px solid var(--line);padding-bottom:16px}
+.top h1{font-weight:900;letter-spacing:-.7px;color:var(--ravelo-ink)}
+.panel,.stat{border:1px solid var(--line);border-radius:12px;box-shadow:0 5px 18px #10182708;animation:none;transition:box-shadow .18s ease,border-color .18s ease}
+.panel:hover,.stat:hover{transform:none;box-shadow:0 10px 24px #10182712;border-color:#f4a18c}
+.panel h3{font-weight:900;letter-spacing:-.3px;color:var(--ravelo-ink)}
+.stat{position:relative;overflow:hidden;border-top:4px solid var(--ravelo-red)}
+.stat:nth-child(2){border-top-color:var(--ravelo-yellow)}.stat:nth-child(3){border-top-color:#344e78}.stat:nth-child(4){border-top-color:#d97706}.stat:nth-child(5){border-top-color:#16835d}
+.stat strong{color:var(--ravelo-ink);font-weight:950;animation:none}
+.dashboard-hero{background:linear-gradient(110deg,#101827 0%,#1c2d48 67%,#ef4b24 160%);border-radius:14px;border-bottom:5px solid var(--ravelo-yellow);box-shadow:0 12px 26px #10182720;animation:none}
+.dashboard-hero:before{background:#ffc92816;filter:none;animation:none}
+.hero-kicker{color:var(--ravelo-yellow);letter-spacing:2px;font-weight:900}
+.hero-copy h2{font-weight:950;letter-spacing:-1px}.hero-copy h2 span{color:var(--ravelo-yellow)}
+.hero-copy p{color:#e1e7f0}
+.hero-truck{filter:drop-shadow(0 8px 5px #0005);animation:none}
+.road-line{background:repeating-linear-gradient(90deg,#ffc928 0 22px,transparent 22px 38px);animation:none}
+th{background:#f0f2f5;color:#3e4a5f;font-weight:900;text-transform:uppercase;letter-spacing:.45px;font-size:10px}
+td{border-bottom:1px solid #e7eaf0}tr:hover td{background:#fffaf7}
+.tag{border-radius:6px;background:#e6efff;color:#1f4c87;font-weight:900;letter-spacing:.1px}.tag.delivered{background:#dff5e8;color:#176342}.tag.process{background:#fff0c2;color:#8a5300}.tag.problem{background:#fee4e2;color:#a21b16}
+.notice{background:#fff4d1;border-left:4px solid var(--ravelo-yellow);color:#654b08;border-radius:7px}
+.public-page{background:linear-gradient(145deg,#101827 0%,#17263d 58%,#ef4b24 170%);animation:none;position:relative}
+.public-page:before{background:#ef4b2416;filter:none;animation:none}.public-page:after{background:#ffc92812;filter:none;animation:none}
+.public-head{padding:24px 10px 20px}.public-head .logo{font-size:clamp(28px,5vw,40px);font-weight:1000;letter-spacing:-1px}.public-head .logo span{color:var(--ravelo-yellow)}
+.public-head h1{font-weight:950;letter-spacing:-1px}.public-head p{color:#e0e7f0}
+.public-truck-wrap{filter:drop-shadow(0 12px 10px #0004)}.public-truck{animation:none}.truck-caption{color:var(--ravelo-yellow);font-weight:900;letter-spacing:2px}.public-truck-wrap:after{background:repeating-linear-gradient(90deg,#ffc928 0 24px,transparent 24px 42px);animation:none}
+.public-panel{border-radius:13px;border:1px solid #ffffffa6;border-top:4px solid var(--ravelo-yellow);box-shadow:0 18px 42px #0002;animation:none;transition:box-shadow .18s ease}.public-panel:hover{box-shadow:0 18px 42px #0003}
+.public-panel h2,.public-panel h3{font-weight:900;letter-spacing:-.5px;color:var(--ravelo-ink)}
+.result-item{background:#f5f6f8;border:1px solid #e3e7ee;border-radius:8px}.result-item strong{font-weight:850;color:#172033}
+.timeline{border-left:3px solid #f6b7a6}.timeline-step:before{border-color:#f5d4cc}.timeline-step.current:before{background:var(--ravelo-red);border-color:#ffd4c8;box-shadow:0 0 0 4px #ef4b2418;animation:none}.timeline-step.completed:before{background:#16835d;border-color:#dff5e8;box-shadow:none}.timeline-step.completed .timeline-label{background:#dff5e8;color:#176342}.timeline-step.current .timeline-label{background:#ffe1d8;color:#a93217}
+.public-footer{color:#dfe5ee}
+/* Mobile: keep admin navigation, forms and tables usable on phone */
+@media(max-width:850px){.sidebar{border-right:0;border-bottom:4px solid var(--ravelo-red);gap:6px}.sidebar .logo{font-size:21px}.nav{border-left:0;border-bottom:2px solid transparent}.nav.active,.nav:hover{border-bottom-color:var(--ravelo-yellow);border-left-color:transparent;transform:none}.main{padding:14px}.top{align-items:flex-start}.dashboard-hero{gap:8px}.hero-road{min-width:90px}}
+@media(max-width:480px){.public-page{padding:14px 10px 28px}.public-head{padding:18px 5px}.public-panel{padding:15px}.public-form{gap:9px}.public-form input{min-height:46px}.public-form button{min-height:46px}.login{padding:24px 20px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat{padding:12px}.stat small{font-size:11px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+
+/* Ravelo Logistic: navy-orange mobile polish + light truck motion */
+:root{--ravelo-ink:#eaf2ff;--ravelo-red:#f97316;--ravelo-yellow:#fb923c;--ravelo-navy:#06152b}
+body{background:#06152b;color:#eaf2ff}
+.sidebar{background:linear-gradient(180deg,#06152b,#0b2342);border-right:1px solid #173b60}
+.main{background:linear-gradient(145deg,#07172d,#0a1d36);color:#eaf2ff}
+.card,.panel,.table-wrap,.section-card,.stat,.dashboard-card{background:#0b2342!important;color:#eaf2ff!important;border:1px solid #21466c!important;box-shadow:0 12px 28px #0003}
+th{background:#102f52!important;color:#f8fafc!important}td{color:#e2ecf8;border-bottom-color:#1c3a5b!important}tr:hover td{background:#102f52!important}
+input,select,textarea{background:#0b2342!important;color:#f8fafc!important;border-color:#2c5277!important}input::placeholder,textarea::placeholder{color:#a8bdd5}
+button{background:linear-gradient(100deg,#f97316,#fb923c);color:#fff;box-shadow:0 5px 14px #f9731625}
+.secondary{background:#173454!important;color:#eaf2ff!important;border:1px solid #315575}
+.dashboard-hero{background:linear-gradient(110deg,#06152b 0%,#123d6b 58%,#f97316 160%)}
+.public-page{background:radial-gradient(ellipse at 85% 10%,#123e6c 0,transparent 40%),linear-gradient(145deg,#06152b,#0a2341 65%,#102e4b);color:#eaf2ff}
+.public-panel{background:linear-gradient(145deg,#0c2645,#081b32)!important;color:#eaf2ff;border:1px solid #244b70!important;border-top:3px solid #f97316!important}
+.public-panel h2,.public-panel h3{color:#f8fafc!important}.public-panel .sub,.public-head p{color:#c6d8ed!important}
+.public-truck-wrap{overflow:hidden;position:relative;padding-bottom:12px}
+.public-truck{width:min(100%,480px);height:auto;animation:truckCruise 5s ease-in-out infinite alternate;transform-origin:center bottom}
+.public-truck-wrap:after{content:"";position:absolute;left:0;right:0;bottom:4px;height:4px;border-radius:8px;background:repeating-linear-gradient(90deg,#fb923c 0 24px,transparent 24px 45px);animation:roadMove .7s linear infinite;opacity:.8}
+.truck-caption{font-size:11px;color:#fb923c;letter-spacing:1.5px}
+@keyframes truckCruise{from{transform:translateX(-9px)}to{transform:translateX(9px)}}
+@keyframes roadMove{from{background-position:0 0}to{background-position:-45px 0}}
+.contact-link{display:flex;align-items:center;gap:12px;padding:13px;margin-top:10px;border:1px solid #25496d;border-radius:12px;background:#0b2342;color:#f8fafc;text-decoration:none;transition:transform .18s,border-color .18s}
+.contact-link:hover{transform:translateY(-2px);border-color:#f97316}.contact-link strong,.contact-link small{display:block}.contact-link small{color:#bcd0e6;margin-top:4px;overflow-wrap:anywhere}.contact-icon{display:grid;place-items:center;flex:0 0 38px;height:38px;border-radius:11px;background:#f97316;color:white;font-weight:900}.contact-note{font-size:12px;color:#a9c0d9;margin:14px 0 0}
+@media(max-width:480px){.public-truck{width:112%;max-width:none;margin-left:-6%}.contact-panel{padding:16px}.contact-link{padding:12px}}
+@media(prefers-reduced-motion:reduce){.public-truck,.public-truck-wrap:after{animation:none!important}}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -66,19 +149,19 @@ input,select,textarea{transition:border-color .2s ease,box-shadow .2s ease}input
 <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" aria-hidden="true" style="position:absolute;overflow:hidden">
  <symbol id="raveloTruck" viewBox="0 0 420 170">
   <defs>
-   <linearGradient id="containerPaint" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffdf45"/><stop offset="1" stop-color="#e9a900"/></linearGradient>
+   <linearGradient id="containerPaint" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1e3a5f"/><stop offset="1" stop-color="#071a33"/></linearGradient>
    <linearGradient id="cabPaint" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b82f6"/><stop offset=".55" stop-color="#1454bd"/><stop offset="1" stop-color="#0b2d69"/></linearGradient>
    <linearGradient id="glassPaint" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#dff6ff"/><stop offset="1" stop-color="#6ba9d9"/></linearGradient>
   </defs>
   <!-- Kontainer berusuk, detail sudut dan branding -->
-  <path d="M18 24 Q18 18 25 18 H250 V121 H18 Z" fill="url(#containerPaint)" stroke="#b87900" stroke-width="2"/>
-  <path d="M28 28V112 M45 28V112 M62 28V112 M79 28V112 M96 28V112 M113 28V112 M130 28V112 M147 28V112 M164 28V112 M181 28V112 M198 28V112 M215 28V112 M232 28V112" stroke="#b67b00" stroke-opacity=".55" stroke-width="2"/>
-  <path d="M24 32H244 M24 108H244" stroke="#fff1a3" stroke-width="2" opacity=".8"/>
-  <rect x="73" y="54" width="128" height="34" rx="4" fill="#14213d" opacity=".95"/>
-  <text x="137" y="68" font-family="Arial, sans-serif" font-size="10" font-weight="800" text-anchor="middle" fill="#fff">RAVELO</text><text x="137" y="80" font-family="Arial, sans-serif" font-size="8" font-weight="700" letter-spacing="1.5" text-anchor="middle" fill="#ffd43b">LOGISTIC</text>
-  <!-- Sasis merah dan pelindung bawah -->
-  <path d="M12 121H278L294 132H18Z" fill="#dc2626" stroke="#991b1b" stroke-width="2"/>
-  <rect x="24" y="130" width="250" height="8" rx="2" fill="#991b1b"/><path d="M32 134H78 M88 134H134 M144 134H190 M200 134H246" stroke="#fca5a5" stroke-width="2"/>
+  <path d="M18 24 Q18 18 25 18 H250 V121 H18 Z" fill="url(#containerPaint)" stroke="#f97316" stroke-width="2"/>
+  <path d="M28 28V112 M45 28V112 M62 28V112 M79 28V112 M96 28V112 M113 28V112 M130 28V112 M147 28V112 M164 28V112 M181 28V112 M198 28V112 M215 28V112 M232 28V112" stroke="#f97316" stroke-opacity=".7" stroke-width="2"/>
+  <path d="M24 32H244 M24 108H244" stroke="#93c5fd" stroke-width="2" opacity=".8"/>
+  <rect x="73" y="54" width="128" height="34" rx="4" fill="#f97316" opacity=".98"/>
+  <text x="137" y="68" font-family="Arial, sans-serif" font-size="10" font-weight="800" text-anchor="middle" fill="#fff">RAVELO</text><text x="137" y="80" font-family="Arial, sans-serif" font-size="8" font-weight="700" letter-spacing="1.5" text-anchor="middle" fill="#ffffff">LOGISTIC</text>
+  <!-- Sasis navy dengan aksen oranye Ravelo -->
+  <path d="M12 121H278L294 132H18Z" fill="#f97316" stroke="#c2410c" stroke-width="2"/>
+  <rect x="24" y="130" width="250" height="8" rx="2" fill="#0b1730"/><path d="M32 134H78 M88 134H134 M144 134H190 M200 134H246" stroke="#fb923c" stroke-width="2"/>
   <!-- Kabin depan menghadap ke kanan -->
   <path d="M250 48H291Q301 48 308 59L330 91L354 98Q362 101 362 111V127H244V61Q244 48 250 48Z" fill="url(#cabPaint)" stroke="#0b2d69" stroke-width="2"/>
   <path d="M286 55H292Q298 56 303 64L318 85H286Z" fill="url(#glassPaint)" stroke="#dbeafe" stroke-width="2"/>
@@ -101,8 +184,8 @@ input,select,textarea{transition:border-color .2s ease,box-shadow .2s ease}input
   <div class="public-wrap">
     <header class="public-head">
       <div class="logo">RAVELO <span>LOGISTIC</span></div>
-      <h1>Cek Resi Pengiriman</h1>
-      <p>Lacak status dan informasi perjalanan paket Anda.</p>
+      <h1>Pengiriman Antar Kota</h1>
+      <p>Kirim barang lebih dekat, aman, dan terpercaya. Lacak perjalanan paket Anda dengan mudah.</p>
       <div class="public-truck-wrap" aria-label="Ilustrasi truk kontainer Ravelo Logistic bergerak maju"><svg class="public-truck" viewBox="0 0 420 170" role="img" aria-label="Truk kontainer biru dan kuning Ravelo Logistic menghadap ke kanan"><use href="#raveloTruck"></use></svg><div class="truck-caption">DELIVERING TRUST • EVERY MILE</div></div>
     </header>
     <div class="public-panel">
@@ -117,7 +200,14 @@ input,select,textarea{transition:border-color .2s ease,box-shadow .2s ease}input
       <p class="sub">Pastikan nomor resi diketik dengan benar. Informasi yang ditampilkan hanya informasi pelacakan yang diizinkan untuk pelanggan.</p>
       <button type="button" class="secondary" id="adminLoginButton">Masuk Admin</button>
     </div>
-    <div class="public-footer">© Ravelo Logistic</div>
+    <section class="public-panel contact-panel" aria-label="Kontak Ravelo Logistic">
+      <h2>Hubungi Kami</h2>
+      <p class="sub">Perlu bantuan tentang pengiriman antar kota? Hubungi tim Ravelo Logistic.</p>
+      <a class="contact-link whatsapp-link" href="https://wa.me/6288263548831" target="_blank" rel="noopener noreferrer"><span class="contact-icon">WA</span><span><strong>WhatsApp / Telepon</strong><small>088263548831</small></span></a>
+      <a class="contact-link" href="mailto:ravelologistik@gmail.com"><span class="contact-icon">@</span><span><strong>Email</strong><small>ravelologistik@gmail.com</small></span></a>
+      <p class="contact-note">Layanan pengiriman antar kota dan wilayah sekitar.</p>
+    </section>
+    <div class="public-footer">© Ravelo Logistic · Antar Kota</div>
   </div>
 </section>
 
