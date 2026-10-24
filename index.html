@@ -15,6 +15,49 @@ input,select,textarea{width:100%;padding:11px;border:1px solid #cbd5e1;border-ra
 .public-page{min-height:100vh;background:linear-gradient(145deg,#14213d,#1d4ed8);padding:26px 14px 50px}.public-wrap{max-width:850px;margin:auto}.public-head{color:white;text-align:center;padding:22px 10px}.public-head .logo{color:white;font-size:29px}.public-head p{color:#dbeafe}.public-panel{background:white;border-radius:16px;padding:22px;margin-bottom:16px;box-shadow:0 14px 40px #0002}.public-form{display:grid;grid-template-columns:1fr auto;gap:10px}.public-form button{min-width:130px}.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.result-item{padding:12px;background:#f8fafc;border-radius:9px;overflow-wrap:anywhere}.result-item small{display:block;color:var(--muted);margin-bottom:6px}.result-item strong{font-size:14px}.timeline{border-left:2px solid #bfdbfe;margin:18px 0 0 7px;padding-left:18px}.timeline-step{position:relative;padding:0 0 18px}.timeline-step:before{content:"";position:absolute;left:-25px;top:3px;width:10px;height:10px;border-radius:50%;background:#cbd5e1;border:3px solid #e2e8f0}.timeline-step.current:before{background:var(--blue);border-color:#dbeafe}.timeline-step{padding-bottom:22px}.timeline-step:last-child{padding-bottom:0}.timeline-step.completed:before{background:#16a34a;border-color:#dcfce7}.timeline-step.skipped:before{background:#cbd5e1;border-color:#f1f5f9}.timeline-title{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.timeline-label{font-size:11px;font-weight:700;padding:4px 8px;border-radius:20px;background:#f1f5f9;color:#64748b}.timeline-step.completed .timeline-label{background:#dcfce7;color:#166534}.timeline-step.current .timeline-label{background:#dbeafe;color:#1d4ed8}.timeline-step.skipped .timeline-label{background:#e2e8f0;color:#64748b}.public-footer{text-align:center;color:#dbeafe;font-size:12px;margin-top:20px}
 @media(max-width:850px){.sidebar{position:static;width:auto;min-height:auto;flex-direction:row;flex-wrap:wrap;padding:12px}.sidebar .logo{width:100%;padding:8px}.nav{font-size:12px;padding:9px}.sidebottom{display:none}.main{margin-left:0;padding:16px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2{grid-template-columns:1fr}.top h1{font-size:21px}}
 @media(max-width:480px){.formgrid{grid-template-columns:1fr}.formgrid .wide{grid-column:auto}.stats{gap:8px}.stat{padding:13px}.stat strong{font-size:23px}.public-form{grid-template-columns:1fr}.public-form button{width:100%}.result-grid{grid-template-columns:1fr}.public-panel{padding:16px}}
+
+
+.dashboard-hero{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:168px;padding:24px 26px;margin-bottom:18px;border-radius:17px;color:white;background:linear-gradient(110deg,#0b1730 0%,#173b78 55%,#2563eb 100%);box-shadow:0 14px 32px #14213d20;animation:riseIn .55s both}
+.dashboard-hero:before{content:"";position:absolute;z-index:-1;width:260px;height:260px;right:15%;top:-150px;border-radius:50%;background:#93c5fd30;filter:blur(8px);animation:orbFloat 7s ease-in-out infinite}
+.hero-copy{position:relative;z-index:2}.hero-kicker{font-size:10px;letter-spacing:1.6px;color:#bfdbfe;font-weight:800}.hero-copy h2{font-size:clamp(22px,3vw,32px);line-height:1.12;margin:9px 0}.hero-copy h2 span{color:#93c5fd}.hero-copy p{margin:0;color:#dbeafe;font-size:13px;max-width:390px;line-height:1.5}
+.hero-road{position:relative;align-self:stretch;min-width:180px;display:flex;align-items:center;justify-content:center}.road-line{position:absolute;left:0;right:-40px;bottom:27px;height:2px;background:repeating-linear-gradient(90deg,#ffffffaa 0 22px,transparent 22px 38px);animation:roadMove 1.3s linear infinite}.hero-truck{font-size:clamp(42px,6vw,68px);filter:drop-shadow(0 8px 9px #0004);animation:truckDrive 3.8s ease-in-out infinite}
+@keyframes roadMove{to{background-position:-38px 0}}
+@media(max-width:650px){.dashboard-hero{padding:20px;min-height:150px}.hero-road{min-width:70px}.hero-truck{font-size:42px}.hero-copy p{max-width:230px}.hero-kicker{font-size:9px}}
+@media(max-width:420px){.hero-road{min-width:48px}.hero-truck{font-size:34px}.dashboard-hero{gap:6px;padding:16px}.hero-copy h2{font-size:21px}}
+
+/* ANIMASI PREMIUM RAVELO */
+:root{scroll-behavior:smooth}
+body{background-image:radial-gradient(ellipse at 90% 0%,#dbeafe 0,transparent 34%)}
+.sidebar{overflow:hidden}.sidebar:after{content:"";position:absolute;width:230px;height:230px;border-radius:50%;background:#2563eb22;right:-120px;bottom:8%;filter:blur(10px);pointer-events:none;animation:orbFloat 8s ease-in-out infinite}
+.logo span{display:inline-block;animation:logoGlow 3s ease-in-out infinite}
+.nav{transition:transform .22s ease,background .22s ease}.nav:hover{transform:translateX(4px)}
+.panel,.stat{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;animation:riseIn .55s both}
+.stat:nth-child(2){animation-delay:.06s}.stat:nth-child(3){animation-delay:.12s}.stat:nth-child(4){animation-delay:.18s}.stat:nth-child(5){animation-delay:.24s}
+.stat:hover,.panel:hover{transform:translateY(-3px);box-shadow:0 14px 30px #14213d12;border-color:#bfdbfe}
+.stat strong{animation:numberPop .55s ease both}
+button{transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;box-shadow:0 3px 8px #2563eb18}button:hover{transform:translateY(-2px);filter:brightness(1.04);box-shadow:0 8px 18px #2563eb2b}button:active{transform:scale(.98)}
+input,select,textarea{transition:border-color .2s ease,box-shadow .2s ease}input:focus,select:focus,textarea:focus{outline:none;border-color:#60a5fa;box-shadow:0 0 0 4px #2563eb18}
+.tag{display:inline-block;animation:badgeIn .35s ease both}
+.public-page{position:relative;overflow:hidden;background:linear-gradient(135deg,#0b1730 0%,#14213d 42%,#1d4ed8 100%);background-size:180% 180%;animation:gradientShift 12s ease infinite}
+.public-page:before,.public-page:after{content:"";position:absolute;pointer-events:none;border-radius:50%;filter:blur(2px)}
+.public-page:before{width:320px;height:320px;right:-130px;top:100px;background:#60a5fa20;animation:orbFloat 9s ease-in-out infinite}
+.public-page:after{width:250px;height:250px;left:-130px;bottom:80px;background:#38bdf820;animation:orbFloat 11s ease-in-out infinite reverse}
+.public-wrap{position:relative;z-index:1}.public-head .logo{letter-spacing:.5px;text-shadow:0 0 24px #60a5fa55}.public-head h1{animation:riseIn .65s both}.public-head p{animation:riseIn .8s both}
+.public-panel{animation:riseIn .65s both;transition:transform .25s ease,box-shadow .25s ease}.public-panel:hover{box-shadow:0 20px 55px #0003}
+.public-head:after{content:"🚚";display:block;font-size:clamp(40px,8vw,68px);margin:10px auto 0;filter:drop-shadow(0 10px 15px #0005);animation:truckDrive 5s ease-in-out infinite}
+.timeline-step.current:before{animation:dotPulse 1.8s ease-in-out infinite}
+.timeline-step.completed:before{box-shadow:0 0 0 4px #16a34a12}
+.hidden{animation:none!important}
+@keyframes riseIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes numberPop{0%{opacity:.3;transform:scale(.86)}70%{transform:scale(1.06)}100%{opacity:1;transform:scale(1)}}
+@keyframes badgeIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+@keyframes logoGlow{0%,100%{text-shadow:0 0 0 #2563eb00}50%{text-shadow:0 0 12px #60a5fa88}}
+@keyframes dotPulse{0%,100%{box-shadow:0 0 0 0 #2563eb22}50%{box-shadow:0 0 0 7px #2563eb12}}
+@keyframes orbFloat{0%,100%{transform:translate(0,0)}50%{transform:translate(-12px,-18px)}}
+@keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes truckDrive{0%,100%{transform:translateX(-8px) rotate(-1deg)}50%{transform:translateX(8px) rotate(1deg)}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
@@ -56,6 +99,7 @@ input,select,textarea{width:100%;padding:11px;border:1px solid #cbd5e1;border-ra
 <button class="nav active" data-page="dashboard">▦ Dashboard</button><button class="nav" data-page="packages">▤ Data Paket</button><button class="nav" data-page="tracking">⌕ Lacak Paket</button><button class="nav" data-page="distribution">⇢ Distribusi</button><button class="nav" data-page="reports">▥ Laporan</button><button class="nav" data-page="about">ⓘ Tentang Sistem</button><div class="sidebottom">Prototipe sistem ekspedisi<br>Hubungkan dengan kebijakan akses Supabase yang aman.</div></aside>
 <main class="main"><div class="top"><div><h1 id="pageTitle">Dashboard</h1><div class="muted" id="pageSub">Ringkasan data dan aktivitas paket</div></div><button class="secondary" id="logout">Keluar Admin</button></div>
 <section id="page-dashboard">
+<div class="dashboard-hero"><div class="hero-copy"><span class="hero-kicker">RAVELO LOGISTIC • CONTROL CENTER</span><h2>Pengiriman Lebih Cepat,<br><span>Lebih Dekat.</span></h2><p>Pantau setiap paket dan kelola perjalanan dalam satu tempat.</p></div><div class="hero-road" aria-hidden="true"><span class="road-line"></span><span class="hero-truck">🚚</span></div></div>
 <div class="stats"><div class="stat"><small>Total Paket</small><strong id="statTotal">0</strong></div><div class="stat"><small>Dalam Proses</small><strong id="statProcess">0</strong></div><div class="stat"><small>Dalam Pengiriman</small><strong id="statShip">0</strong></div><div class="stat"><small>Tertunda</small><strong id="statDelayed">0</strong></div><div class="stat"><small>Terkirim</small><strong id="statDone">0</strong></div></div>
 <div class="grid2"><div class="panel"><h3>Aktivitas Paket Terbaru</h3><div id="recentTable" class="tablewrap"></div></div><div class="panel"><h3>Akses Cepat</h3><p class="sub">Kelola pengiriman dalam satu tempat.</p><button data-goto="packages">＋ Input Paket</button> <button class="secondary" data-goto="tracking">Lacak Resi</button><div class="notice" style="margin-top:18px">Pencarian publik menggunakan fungsi database khusus, bukan membaca seluruh tabel paket.</div></div></div>
 </section>
