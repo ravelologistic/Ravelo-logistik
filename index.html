@@ -123,9 +123,9 @@ input,select,textarea{transition:border-color .2s ease,box-shadow .2s ease}input
 
 <div id="loginWrap" class="login-wrap hidden"><form id="loginForm" class="login">
 <div class="logo">RAVELO <span>LOGISTIC</span></div><p class="sub">Sistem Informasi Manajemen Ekspedisi<br>Masuk untuk mengelola data paket dan pengiriman.</p>
-<div class="field"><label>Nama pengguna</label><input id="username" autocomplete="username" placeholder="Nama pengguna" required></div>
+<div class="field"><label>Email admin</label><input id="username" type="email" autocomplete="username" placeholder="Email admin" required></div>
 <div class="field"><label>Kata sandi</label><input id="password" type="password" autocomplete="current-password" placeholder="Kata sandi" required></div>
-<div id="loginError" class="error"></div><button class="full" type="submit">Masuk ke Dashboard</button><p class="muted">Demo login admin: <b>admin</b> / <b>admin123</b></p>
+<div id="loginError" class="error"></div><button class="full" type="submit">Masuk ke Dashboard</button><p class="muted">Gunakan email dan password akun admin yang dibuat di Supabase.</p>
 <button class="secondary full" type="button" id="backToTracking" style="margin-top:10px">Kembali ke Cek Resi</button>
 </form></div>
 
@@ -153,12 +153,13 @@ input,select,textarea{transition:border-color .2s ease,box-shadow .2s ease}input
 <section id="page-tracking" class="hidden"><div class="panel"><h3>Lacak Paket Berdasarkan Nomor Resi</h3><form id="trackForm" class="formgrid"><div class="field"><label>Nomor resi</label><input id="trackNumber" placeholder="Contoh: RVL12345678" required></div><div class="field" style="align-self:end"><button type="submit">Lacak Paket</button></div></form><div id="trackResult"></div></div></section>
 <section id="page-distribution" class="hidden"><div class="panel"><h3>Tahapan Distribusi</h3><p class="sub">Ringkasan posisi proses berdasarkan status paket.</p><div id="distributionTable" class="tablewrap"></div></div></section>
 <section id="page-reports" class="hidden"><div class="panel"><h3>Laporan Paket</h3><p class="sub">Rekap data paket yang tersimpan di database online.</p><button id="exportCsv">Unduh Laporan CSV</button><div id="reportTable" class="tablewrap" style="margin-top:15px"></div></div></section>
-<section id="page-about" class="hidden"><div class="panel"><h3>Tentang Ravelo Logistic</h3><p>Ravelo Logistic adalah prototipe Sistem Informasi Ekspedisi.</p><ul><li>Dashboard ringkasan data dan aktivitas paket</li><li>Input, edit, hapus, dan pencarian paket</li><li>Pelacakan nomor resi tanpa login pelanggan</li><li>Tanggal dan jam pengiriman serta tanggal perkiraan tiba</li><li>Pemantauan tahapan distribusi dan ekspor CSV</li></ul><div class="notice">Catatan keamanan: login admin yang tertanam dalam JavaScript hanya simulasi dan tidak melindungi operasi database. Sebelum digunakan dengan data nyata, amankan operasi admin memakai Supabase Auth dan kebijakan RLS.</div></div></section>
+<section id="page-about" class="hidden"><div class="panel"><h3>Tentang Ravelo Logistic</h3><p>Ravelo Logistic adalah prototipe Sistem Informasi Ekspedisi.</p><ul><li>Dashboard ringkasan data dan aktivitas paket</li><li>Input, edit, hapus, dan pencarian paket</li><li>Pelacakan nomor resi tanpa login pelanggan</li><li>Tanggal dan jam pengiriman serta tanggal perkiraan tiba</li><li>Pemantauan tahapan distribusi dan ekspor CSV</li></ul><div class="notice">Catatan keamanan: login menggunakan Supabase Auth dan UID admin yang ditetapkan. Keamanan operasi database tetap bergantung pada kebijakan Row Level Security (RLS) di Supabase.</div></div></section>
 </main></div>
 <script>
 const $=id=>document.getElementById(id);
 const SUPABASE_URL = 'https://cyujkdcewcznocqpxwva.supabase.co';
 const SUPABASE_PUBLISHABLE_KEY = 'sb_publishable_SfVtZhW1yddNGBO3WVmhww_2k0epiVv';
+const ADMIN_USER_ID = 'b47fcf21-1f09-479d-b71f-e9d81dbb4215';
 let sb = null;
 function initSupabase(){
   if(!SUPABASE_URL.startsWith('https://') || !SUPABASE_PUBLISHABLE_KEY){alert('Konfigurasi Supabase belum lengkap.');return false;}
@@ -182,15 +183,22 @@ function startRealtime(){if(packageChannel)sb.removeChannel(packageChannel);pack
 function showAdminLogin(){ $('publicPage').classList.add('hidden');$('app').style.display='none';$('loginWrap').classList.remove('hidden');$('loginError').textContent='';}
 function showPublic(){ $('loginWrap').classList.add('hidden');$('app').style.display='none';$('publicPage').classList.remove('hidden');}
 $('adminLoginButton').onclick=showAdminLogin;$('backToTracking').onclick=showPublic;
+async function openAdminDashboard(){
+ $('loginError').textContent='';$('loginWrap').classList.add('hidden');$('publicPage').classList.add('hidden');$('app').style.display='block';
+ const ok=await loadPackages();if(ok)startRealtime();else {$('app').style.display='none';$('loginWrap').classList.remove('hidden');$('loginError').textContent='Login berhasil, tetapi data paket belum bisa dibaca. Periksa kebijakan RLS Supabase.';}
+}
 $('loginForm').addEventListener('submit',async e=>{
  e.preventDefault();
- // Login ini tetap demo browser-side. Jangan gunakan sebagai satu-satunya keamanan database.
- if($('username').value==='admin'&&$('password').value==='admin123'){
-  $('loginError').textContent='';$('loginWrap').classList.add('hidden');$('publicPage').classList.add('hidden');$('app').style.display='block';
-  const ok=await loadPackages();if(ok)startRealtime();
- }else $('loginError').textContent='Nama pengguna atau kata sandi salah.';
+ if(!initSupabase())return;
+ $('loginError').textContent='Memeriksa akun…';
+ const email=$('username').value.trim();
+ const password=$('password').value;
+ const {data,error}=await sb.auth.signInWithPassword({email,password});
+ if(error){$('loginError').textContent='Login gagal. Periksa email, password, atau verifikasi akun.';return;}
+ if(!data.user || data.user.id!==ADMIN_USER_ID){await sb.auth.signOut();$('loginError').textContent='Akun ini tidak memiliki akses admin Ravelo Logistic.';return;}
+ await openAdminDashboard();
 });
-$('logout').onclick=()=>{$('app').style.display='none';if(packageChannel){sb.removeChannel(packageChannel);packageChannel=null;}showPublic();};
+$('logout').onclick=async()=>{$('app').style.display='none';if(packageChannel){sb.removeChannel(packageChannel);packageChannel=null;}if(sb)await sb.auth.signOut();showPublic();};
 const pageNames={dashboard:['Dashboard','Ringkasan data dan aktivitas paket'],packages:['Data Paket','Input dan pengelolaan data paket'],tracking:['Lacak Paket','Cari paket berdasarkan nomor resi'],distribution:['Distribusi','Pantau tahapan proses pengiriman'],reports:['Laporan','Rekap data dan ekspor CSV'],about:['Tentang Sistem','Informasi tentang Ravelo Logistic']};
 function showPage(p){Object.keys(pageNames).forEach(k=>$('page-'+k).classList.toggle('hidden',k!==p));document.querySelectorAll('.nav').forEach(b=>b.classList.toggle('active',b.dataset.page===p));$('pageTitle').textContent=pageNames[p][0];$('pageSub').textContent=pageNames[p][1];render();}
 document.querySelectorAll('.nav').forEach(b=>b.onclick=()=>showPage(b.dataset.page));document.querySelectorAll('[data-goto]').forEach(b=>b.onclick=()=>showPage(b.dataset.goto));
