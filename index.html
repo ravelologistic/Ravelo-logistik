@@ -30,6 +30,19 @@ input,select,textarea{width:100%;padding:11px;border:1px solid #cbd5e1;border-ra
 .panel,.stat{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;animation:riseIn .55s both}.stat:nth-child(2){animation-delay:.06s}.stat:nth-child(3){animation-delay:.12s}.stat:nth-child(4){animation-delay:.18s}.stat:nth-child(5){animation-delay:.24s}.stat:hover,.panel:hover{transform:translateY(-3px);box-shadow:0 14px 30px #14213d12;border-color:#bfdbfe}.stat strong{animation:numberPop .55s ease both}
 button{transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;box-shadow:0 3px 8px #2563eb18}button:hover{transform:translateY(-2px);filter:brightness(1.04);box-shadow:0 8px 18px #2563eb2b}button:active{transform:scale(.98)}input,select,textarea{transition:border-color .2s ease,box-shadow .2s ease}input:focus,select:focus,textarea:focus{outline:none;border-color:#60a5fa;box-shadow:0 0 0 4px #2563eb18}.tag{display:inline-block;animation:badgeIn .35s ease both}.public-page{position:relative;overflow:hidden;background-size:180% 180%;animation:gradientShift 12s ease infinite}.public-page:before,.public-page:after{content:"";position:absolute;pointer-events:none;border-radius:50%;filter:blur(2px)}.public-page:before{width:320px;height:320px;right:-130px;top:100px;background:#60a5fa20;animation:orbFloat 9s ease-in-out infinite}.public-page:after{width:250px;height:250px;left:-130px;bottom:80px;background:#ff7a1a12;animation:orbFloat 11s ease-in-out infinite reverse}.public-wrap{position:relative;z-index:1}.public-head .logo{letter-spacing:.5px;text-shadow:0 0 24px #60a5fa55}.public-head h1{animation:riseIn .65s both}.public-head p{animation:riseIn .8s both}.public-panel{animation:riseIn .65s both;transition:transform .25s ease,box-shadow .25s ease}.public-panel:hover{box-shadow:0 20px 55px #0003}.public-truck-wrap{width:min(520px,96%);margin:12px auto 0;padding:8px 0 0;filter:drop-shadow(0 12px 14px #0004)}.public-truck{display:block;width:100%;height:auto;animation:truckDrive 5s ease-in-out infinite;transform-origin:center}.truck-caption{font-size:10px;letter-spacing:2px;font-weight:800;color:#ffad70;margin-top:2px}.public-truck-wrap:after{content:"";display:block;height:3px;margin:0 auto;width:92%;background:repeating-linear-gradient(90deg,#ff9b54 0 24px,transparent 24px 42px);animation:roadMove 1.3s linear infinite}.logo .brand-mark{animation:logoGlow 3s ease-in-out infinite}.sidebar{overflow:hidden}.sidebar:after{content:"";position:absolute;width:230px;height:230px;border-radius:50%;background:#2563eb22;right:-120px;bottom:8%;filter:blur(10px);pointer-events:none;animation:orbFloat 8s ease-in-out infinite}.nav{transition:transform .22s ease,background .22s ease}.nav:hover{transform:translateX(4px)}
 :root{scroll-behavior:smooth}
+/* PENYESUAIAN VISUAL: kembalikan panel publik ke navy-oranye dan cegah tabel melebar di HP */
+.public-panel{background:linear-gradient(145deg,#0c203b,#102b4b);color:#f8fafc;border:1px solid #284969;border-top:4px solid #ff7a1a;border-radius:18px;box-shadow:0 14px 35px #0003}
+.public-panel .sub{color:#c5d5e8}
+.public-panel input,.public-panel select,.public-panel textarea{background:#0b2340;color:#f8fafc;border:1px solid #315575}
+.public-panel input::placeholder,.public-panel textarea::placeholder{color:#a9bdd4;opacity:1}
+.public-panel input:focus,.public-panel select:focus,.public-panel textarea:focus{border-color:#ff9a4d;box-shadow:0 0 0 4px #ff7a1a20}
+.public-form button{background:linear-gradient(100deg,#ff7417,#ff963d);color:#fff;box-shadow:0 7px 18px #ff7a1a30}
+.public-panel .secondary{background:#173b5e;color:#f8fafc;border:1px solid #315575}
+/* Tabel tetap bisa digeser di dalam panel, bukan memaksa seluruh halaman melebar */
+.main,.panel,.grid2,.grid2>* ,.tablewrap{min-width:0;max-width:100%}
+.tablewrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tablewrap table{width:max-content;min-width:100%}
+@media(max-width:480px){.public-panel{padding:16px}.public-head{padding:18px 6px}.public-head h1{font-size:clamp(25px,7vw,34px)}.public-head p{font-size:16px}.public-truck-wrap{width:100%}.main{padding:12px}.panel{padding:14px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -38,12 +51,12 @@ button{transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;box-sha
 <!-- Simbol logo Ravelo digunakan ulang pada header, login, sidebar, dan bak truk -->
 <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" aria-hidden="true" style="position:absolute;overflow:hidden">
  <symbol id="raveloMark" viewBox="0 0 100 100">
-  <path d="M15 12H59C81 12 91 24 91 42C91 58 81 68 66 71L88 91H61L37 66V91H15Z" fill="#ff7a1a"/>
-  <path d="M37 33V49H58C65 49 69 46 69 41C69 36 65 33 58 33Z" fill="#0b1730"/>
-  <path d="M11 20H24V83H11Z" fill="#ffffff"/>
-  <path d="M30 20H59C77 20 85 29 85 42C85 53 78 61 65 64L82 81H62L41 59H30Z" fill="#ffffff"/>
-  <path d="M42 33V48H58C65 48 69 46 69 40C69 35 65 33 58 33Z" fill="#0b1730"/>
-  <path d="M10 88H75" stroke="#ff7a1a" stroke-width="7" stroke-linecap="round"/>
+  <!-- Monogram R berkecepatan: lengkung putih dan aksen oranye seperti referensi -->
+  <path d="M27 10H65C84 10 94 22 94 39C94 53 85 62 70 66L94 91H70L44 62L56 48H67C75 48 80 44 80 37C80 30 75 25 66 25H40Z" fill="#f8fafc"/>
+  <path d="M11 28H62L43 48H22L42 48L21 60H5L24 47H16Z" fill="#ff7a1a"/>
+  <path d="M18 48H49L31 65H13L28 53H20Z" fill="#ff7a1a"/>
+  <path d="M28 68H47L35 80H22Z" fill="#ff7a1a"/>
+  <path d="M63 28H82L52 82H33Z" fill="#ff7a1a"/>
  </symbol>
  <symbol id="raveloTruck" viewBox="0 0 420 170">
   <defs>
@@ -56,7 +69,7 @@ button{transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;box-sha
   <path d="M39 28V111M56 28V111M73 28V111M90 28V111M107 28V111M124 28V111M141 28V111M158 28V111M175 28V111M192 28V111M209 28V111M226 28V111M243 28V111" stroke="#ff7a1a" stroke-opacity=".55" stroke-width="2"/>
   <path d="M24 32H244M24 108H244" stroke="#93c5fd" stroke-opacity=".7" stroke-width="2"/>
   <!-- Logo di tengah bak -->
-  <rect x="64" y="49" width="146" height="47" rx="5" fill="#07162f" stroke="#ff7a1a" stroke-width="1.5"/>
+  <rect x="64" y="49" width="146" height="47" rx="3" fill="#0b1f42" stroke="#ff7a1a" stroke-width="1.5"/>
   <use href="#raveloMark" x="70" y="56" width="34" height="34"/>
   <text x="151" y="69" font-family="Arial,sans-serif" font-size="11" font-weight="900" text-anchor="middle" fill="#ffffff">RAVELO</text>
   <text x="157" y="83" font-family="Arial,sans-serif" font-size="8" font-weight="700" letter-spacing="1.5" text-anchor="middle" fill="#ff7a1a">LOGISTIC</text>
@@ -224,4 +237,4 @@ $('exportCsv').onclick=()=>{const headers=['Nomor Resi','Pengirim','Penerima','K
 render();
 </script>
 </body>
-</html>
+                                                                                                                                                                                                                                                </html>
