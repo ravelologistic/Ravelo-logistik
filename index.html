@@ -5,239 +5,117 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ravelo Logistic | Sistem Informasi Ekspedisi</title>
 <style>
-:root{--navy:#14213d;--blue:#2563eb;--pale:#eff6ff;--bg:#f4f7fb;--text:#1f2937;--muted:#64748b;--line:#e2e8f0}
+:root{--navy:#0b1730;--blue:#2563eb;--orange:#ff7a1a;--pale:#eff6ff;--bg:#f4f7fb;--text:#1f2937;--muted:#64748b;--line:#e2e8f0}
 *{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--text)}
 button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:9px;padding:10px 14px;background:var(--blue);color:white;font-weight:700}
 input,select,textarea{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:8px;background:white}textarea{min-height:82px;resize:vertical}
-.login-wrap{min-height:100vh;display:grid;place-items:center;padding:20px;background:linear-gradient(135deg,#14213d,#2563eb)}
-.login{background:#fff;border-radius:18px;padding:30px;width:min(420px,100%);box-shadow:0 20px 60px #0003}.logo{font-size:25px;font-weight:800;color:var(--navy)}.logo span{color:var(--blue)}.sub{color:var(--muted);line-height:1.5}.field{margin:14px 0}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:7px}.full{width:100%}.error{color:#b91c1c;font-size:13px;min-height:18px}
-.app{display:none;min-height:100vh}.sidebar{position:fixed;inset:0 auto 0 0;width:235px;background:var(--navy);color:white;padding:24px 15px;display:flex;flex-direction:column;gap:8px}.sidebar .logo{color:white;padding:0 10px 22px}.nav{background:transparent;text-align:left;color:#dbeafe;font-weight:600}.nav.active,.nav:hover{background:#ffffff1c;color:white}.sidebottom{margin-top:auto;color:#cbd5e1;font-size:12px;padding:10px}.main{margin-left:235px;padding:26px;max-width:1500px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px}.top h1{font-size:25px;margin:0 0 6px}.muted{color:var(--muted);font-size:13px}.panel{background:white;border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:18px;box-shadow:0 3px 12px #0f172a05}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}.stat{background:white;border:1px solid var(--line);border-radius:14px;padding:18px}.stat small{color:var(--muted)}.stat strong{display:block;font-size:27px;margin-top:9px;color:var(--navy)}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.formgrid .field{margin:0}.formgrid .wide{grid-column:1/-1}.tablewrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}th{color:var(--muted);font-size:12px;background:#f8fafc}.tag{padding:5px 8px;border-radius:20px;font-size:11px;font-weight:700;background:#e0f2fe;color:#075985}.tag.delivered{background:#dcfce7;color:#166534}.tag.process{background:#fef3c7;color:#92400e}.tag.problem{background:#fee2e2;color:#991b1b}.actions{display:flex;gap:7px}.secondary{background:#e2e8f0;color:#1e293b}.danger{background:#dc2626}.hidden{display:none!important}.notice{background:var(--pale);border-radius:10px;padding:13px;color:#1e40af;font-size:13px;line-height:1.5}.empty{text-align:center;color:var(--muted);padding:24px}
-.public-page{min-height:100vh;background:linear-gradient(145deg,#14213d,#1d4ed8);padding:26px 14px 50px}.public-wrap{max-width:850px;margin:auto}.public-head{color:white;text-align:center;padding:22px 10px}.public-head .logo{color:white;font-size:29px}.public-head p{color:#dbeafe}.public-panel{background:white;border-radius:16px;padding:22px;margin-bottom:16px;box-shadow:0 14px 40px #0002}.public-form{display:grid;grid-template-columns:1fr auto;gap:10px}.public-form button{min-width:130px}.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.result-item{padding:12px;background:#f8fafc;border-radius:9px;overflow-wrap:anywhere}.result-item small{display:block;color:var(--muted);margin-bottom:6px}.result-item strong{font-size:14px}.timeline{border-left:2px solid #bfdbfe;margin:18px 0 0 7px;padding-left:18px}.timeline-step{position:relative;padding:0 0 18px}.timeline-step:before{content:"";position:absolute;left:-25px;top:3px;width:10px;height:10px;border-radius:50%;background:#cbd5e1;border:3px solid #e2e8f0}.timeline-step.current:before{background:var(--blue);border-color:#dbeafe}.timeline-step{padding-bottom:22px}.timeline-step:last-child{padding-bottom:0}.timeline-step.completed:before{background:#16a34a;border-color:#dcfce7}.timeline-step.skipped:before{background:#cbd5e1;border-color:#f1f5f9}.timeline-title{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.timeline-label{font-size:11px;font-weight:700;padding:4px 8px;border-radius:20px;background:#f1f5f9;color:#64748b}.timeline-step.completed .timeline-label{background:#dcfce7;color:#166534}.timeline-step.current .timeline-label{background:#dbeafe;color:#1d4ed8}.timeline-step.skipped .timeline-label{background:#e2e8f0;color:#64748b}.public-footer{text-align:center;color:#dbeafe;font-size:12px;margin-top:20px}
-@media(max-width:850px){.sidebar{position:static;width:auto;min-height:auto;flex-direction:row;flex-wrap:wrap;padding:12px}.sidebar .logo{width:100%;padding:8px}.nav{font-size:12px;padding:9px}.sidebottom{display:none}.main{margin-left:0;padding:16px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2{grid-template-columns:1fr}.top h1{font-size:21px}}
-@media(max-width:480px){.formgrid{grid-template-columns:1fr}.formgrid .wide{grid-column:auto}.stats{gap:8px}.stat{padding:13px}.stat strong{font-size:23px}.public-form{grid-template-columns:1fr}.public-form button{width:100%}.result-grid{grid-template-columns:1fr}.public-panel{padding:16px}}
-
-
+.login-wrap{min-height:100vh;display:grid;place-items:center;padding:20px;background:linear-gradient(135deg,#0b1730,#1d4ed8)}
+.login{background:#fff;border-radius:18px;padding:30px;width:min(420px,100%);box-shadow:0 20px 60px #0003}
+.logo{display:flex;align-items:center;justify-content:center;gap:9px;font-size:25px;font-weight:900;letter-spacing:.3px;color:var(--navy)}
+.logo span{color:var(--orange)}
+.brand-mark{width:34px;height:34px;flex:0 0 34px;display:inline-block;vertical-align:middle}
+.sub{color:var(--muted);line-height:1.5}.field{margin:14px 0}.field label{display:block;font-size:13px;font-weight:700;margin-bottom:7px}.full{width:100%}.error{color:#b91c1c;font-size:13px;min-height:18px}
+.app{display:none;min-height:100vh}.sidebar{position:fixed;inset:0 auto 0 0;width:235px;background:var(--navy);color:white;padding:24px 15px;display:flex;flex-direction:column;gap:8px}.sidebar .logo{color:white;padding:0 5px 22px;justify-content:flex-start;font-size:19px}.sidebar .brand-mark{width:28px;height:28px;flex-basis:28px}
+.nav{background:transparent;text-align:left;color:#dbeafe;font-weight:600}.nav.active,.nav:hover{background:#ffffff1c;color:white}.sidebottom{margin-top:auto;color:#cbd5e1;font-size:12px;padding:10px}.main{margin-left:235px;padding:26px;max-width:1500px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:22px}.top h1{font-size:25px;margin:0 0 6px}.muted{color:var(--muted);font-size:13px}.panel{background:white;border:1px solid var(--line);border-radius:14px;padding:20px;margin-bottom:18px;box-shadow:0 3px 12px #0f172a05}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-bottom:18px}.stat{background:white;border:1px solid var(--line);border-radius:14px;padding:18px}.stat small{color:var(--muted)}.stat strong{display:block;font-size:27px;margin-top:9px;color:var(--navy)}.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.formgrid .field{margin:0}.formgrid .wide{grid-column:1/-1}.tablewrap{overflow:auto}table{border-collapse:collapse;width:100%;font-size:13px}th,td{padding:12px 10px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap}th{color:var(--muted);font-size:12px;background:#f8fafc}.tag{padding:5px 8px;border-radius:20px;font-size:11px;font-weight:700;background:#e0f2fe;color:#075985}.tag.delivered{background:#dcfce7;color:#166534}.tag.process{background:#fef3c7;color:#92400e}.tag.problem{background:#fee2e2;color:#991b1b}.actions{display:flex;gap:7px}.secondary{background:#e2e8f0;color:#1e293b}.danger{background:#dc2626}.hidden{display:none!important}.notice{background:var(--pale);border-radius:10px;padding:13px;color:#1e40af;font-size:13px;line-height:1.5}.empty{text-align:center;color:var(--muted);padding:24px}
+.public-page{min-height:100vh;background:linear-gradient(145deg,#0b1730,#14213d 42%,#1d4ed8);padding:26px 14px 50px}.public-wrap{max-width:850px;margin:auto}.public-head{color:white;text-align:center;padding:22px 10px}.public-head .logo{color:white;font-size:29px}.public-head p{color:#dbeafe}.public-panel{background:white;border-radius:16px;padding:22px;margin-bottom:16px;box-shadow:0 14px 40px #0002}.public-form{display:grid;grid-template-columns:1fr auto;gap:10px}.public-form button{min-width:130px}.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.result-item{padding:12px;background:#f8fafc;border-radius:9px;overflow-wrap:anywhere}.result-item small{display:block;color:var(--muted);margin-bottom:6px}.result-item strong{font-size:14px}.timeline{border-left:2px solid #bfdbfe;margin:18px 0 0 7px;padding-left:18px}.timeline-step{position:relative;padding:0 0 22px}.timeline-step:before{content:"";position:absolute;left:-25px;top:3px;width:10px;height:10px;border-radius:50%;background:#cbd5e1;border:3px solid #e2e8f0}.timeline-step.current:before{background:var(--blue);border-color:#dbeafe;animation:dotPulse 1.8s ease-in-out infinite}.timeline-step.completed:before{background:#16a34a;border-color:#dcfce7;box-shadow:0 0 0 4px #16a34a12}.timeline-step.skipped:before{background:#cbd5e1;border-color:#f1f5f9}.timeline-title{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}.timeline-label{font-size:11px;font-weight:700;padding:4px 8px;border-radius:20px;background:#f1f5f9;color:#64748b}.timeline-step.completed .timeline-label{background:#dcfce7;color:#166534}.timeline-step.current .timeline-label{background:#dbeafe;color:#1d4ed8}.timeline-step.skipped .timeline-label{background:#e2e8f0;color:#64748b}.public-footer{text-align:center;color:#dbeafe;font-size:12px;margin-top:20px}
 .dashboard-hero{position:relative;isolation:isolate;overflow:hidden;display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:168px;padding:24px 26px;margin-bottom:18px;border-radius:17px;color:white;background:linear-gradient(110deg,#0b1730 0%,#173b78 55%,#2563eb 100%);box-shadow:0 14px 32px #14213d20;animation:riseIn .55s both}
 .dashboard-hero:before{content:"";position:absolute;z-index:-1;width:260px;height:260px;right:15%;top:-150px;border-radius:50%;background:#93c5fd30;filter:blur(8px);animation:orbFloat 7s ease-in-out infinite}
-.hero-copy{position:relative;z-index:2}.hero-kicker{font-size:10px;letter-spacing:1.6px;color:#bfdbfe;font-weight:800}.hero-copy h2{font-size:clamp(22px,3vw,32px);line-height:1.12;margin:9px 0}.hero-copy h2 span{color:#93c5fd}.hero-copy p{margin:0;color:#dbeafe;font-size:13px;max-width:390px;line-height:1.5}
+.hero-copy{position:relative;z-index:2}.hero-kicker{font-size:10px;letter-spacing:1.6px;color:#bfdbfe;font-weight:800}.hero-copy h2{font-size:clamp(22px,3vw,32px);line-height:1.12;margin:9px 0}.hero-copy h2 span{color:#ffad70}.hero-copy p{margin:0;color:#dbeafe;font-size:13px;max-width:390px;line-height:1.5}
 .hero-road{position:relative;align-self:stretch;min-width:180px;display:flex;align-items:center;justify-content:center}.road-line{position:absolute;left:0;right:-40px;bottom:27px;height:2px;background:repeating-linear-gradient(90deg,#ffffffaa 0 22px,transparent 22px 38px);animation:roadMove 1.3s linear infinite}.hero-truck{display:block;width:clamp(180px,24vw,300px);max-width:100%;height:auto;overflow:visible;filter:drop-shadow(0 10px 9px #0005);animation:truckDrive 3.8s ease-in-out infinite;transform-origin:center}
-@keyframes roadMove{to{background-position:-38px 0}}
+@keyframes roadMove{to{background-position:-38px 0}}@keyframes riseIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}@keyframes numberPop{0%{opacity:.3;transform:scale(.86)}70%{transform:scale(1.06)}100%{opacity:1;transform:scale(1)}}@keyframes badgeIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}@keyframes logoGlow{0%,100%{filter:drop-shadow(0 0 0 #ff7a1a00)}50%{filter:drop-shadow(0 0 5px #ff7a1a66)}}@keyframes dotPulse{0%,100%{box-shadow:0 0 0 0 #2563eb22}50%{box-shadow:0 0 0 7px #2563eb12}}@keyframes orbFloat{0%,100%{transform:translate(0,0)}50%{transform:translate(-12px,-18px)}}@keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}@keyframes truckDrive{0%,100%{transform:translateX(-5px) rotate(-.5deg)}50%{transform:translateX(5px) rotate(.5deg)}}
+@media(max-width:850px){.sidebar{position:static;width:auto;min-height:auto;flex-direction:row;flex-wrap:wrap;padding:12px}.sidebar .logo{width:100%;padding:8px}.nav{font-size:12px;padding:9px}.sidebottom{display:none}.main{margin-left:0;padding:16px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2{grid-template-columns:1fr}.top h1{font-size:21px}}
 @media(max-width:650px){.dashboard-hero{padding:20px;min-height:150px}.hero-road{min-width:70px}.hero-truck{width:190px}.hero-copy p{max-width:230px}.hero-kicker{font-size:9px}}
+@media(max-width:480px){.formgrid{grid-template-columns:1fr}.formgrid .wide{grid-column:auto}.stats{gap:8px}.stat{padding:13px}.stat strong{font-size:23px}.public-form{grid-template-columns:1fr}.public-form button{width:100%}.result-grid{grid-template-columns:1fr}.public-panel{padding:16px}.public-head .logo{font-size:24px}}
 @media(max-width:420px){.hero-road{min-width:48px}.hero-truck{width:145px}.dashboard-hero{gap:6px;padding:16px}.hero-copy h2{font-size:21px}}
-
-/* ANIMASI PREMIUM RAVELO */
+.panel,.stat{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;animation:riseIn .55s both}.stat:nth-child(2){animation-delay:.06s}.stat:nth-child(3){animation-delay:.12s}.stat:nth-child(4){animation-delay:.18s}.stat:nth-child(5){animation-delay:.24s}.stat:hover,.panel:hover{transform:translateY(-3px);box-shadow:0 14px 30px #14213d12;border-color:#bfdbfe}.stat strong{animation:numberPop .55s ease both}
+button{transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;box-shadow:0 3px 8px #2563eb18}button:hover{transform:translateY(-2px);filter:brightness(1.04);box-shadow:0 8px 18px #2563eb2b}button:active{transform:scale(.98)}input,select,textarea{transition:border-color .2s ease,box-shadow .2s ease}input:focus,select:focus,textarea:focus{outline:none;border-color:#60a5fa;box-shadow:0 0 0 4px #2563eb18}.tag{display:inline-block;animation:badgeIn .35s ease both}.public-page{position:relative;overflow:hidden;background-size:180% 180%;animation:gradientShift 12s ease infinite}.public-page:before,.public-page:after{content:"";position:absolute;pointer-events:none;border-radius:50%;filter:blur(2px)}.public-page:before{width:320px;height:320px;right:-130px;top:100px;background:#60a5fa20;animation:orbFloat 9s ease-in-out infinite}.public-page:after{width:250px;height:250px;left:-130px;bottom:80px;background:#ff7a1a12;animation:orbFloat 11s ease-in-out infinite reverse}.public-wrap{position:relative;z-index:1}.public-head .logo{letter-spacing:.5px;text-shadow:0 0 24px #60a5fa55}.public-head h1{animation:riseIn .65s both}.public-head p{animation:riseIn .8s both}.public-panel{animation:riseIn .65s both;transition:transform .25s ease,box-shadow .25s ease}.public-panel:hover{box-shadow:0 20px 55px #0003}.public-truck-wrap{width:min(520px,96%);margin:12px auto 0;padding:8px 0 0;filter:drop-shadow(0 12px 14px #0004)}.public-truck{display:block;width:100%;height:auto;animation:truckDrive 5s ease-in-out infinite;transform-origin:center}.truck-caption{font-size:10px;letter-spacing:2px;font-weight:800;color:#ffad70;margin-top:2px}.public-truck-wrap:after{content:"";display:block;height:3px;margin:0 auto;width:92%;background:repeating-linear-gradient(90deg,#ff9b54 0 24px,transparent 24px 42px);animation:roadMove 1.3s linear infinite}.logo .brand-mark{animation:logoGlow 3s ease-in-out infinite}.sidebar{overflow:hidden}.sidebar:after{content:"";position:absolute;width:230px;height:230px;border-radius:50%;background:#2563eb22;right:-120px;bottom:8%;filter:blur(10px);pointer-events:none;animation:orbFloat 8s ease-in-out infinite}.nav{transition:transform .22s ease,background .22s ease}.nav:hover{transform:translateX(4px)}
 :root{scroll-behavior:smooth}
-body{background-image:radial-gradient(ellipse at 90% 0%,#dbeafe 0,transparent 34%)}
-.sidebar{overflow:hidden}.sidebar:after{content:"";position:absolute;width:230px;height:230px;border-radius:50%;background:#2563eb22;right:-120px;bottom:8%;filter:blur(10px);pointer-events:none;animation:orbFloat 8s ease-in-out infinite}
-.logo span{display:inline-block;animation:logoGlow 3s ease-in-out infinite}
-.nav{transition:transform .22s ease,background .22s ease}.nav:hover{transform:translateX(4px)}
-.panel,.stat{transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;animation:riseIn .55s both}
-.stat:nth-child(2){animation-delay:.06s}.stat:nth-child(3){animation-delay:.12s}.stat:nth-child(4){animation-delay:.18s}.stat:nth-child(5){animation-delay:.24s}
-.stat:hover,.panel:hover{transform:translateY(-3px);box-shadow:0 14px 30px #14213d12;border-color:#bfdbfe}
-.stat strong{animation:numberPop .55s ease both}
-button{transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;box-shadow:0 3px 8px #2563eb18}button:hover{transform:translateY(-2px);filter:brightness(1.04);box-shadow:0 8px 18px #2563eb2b}button:active{transform:scale(.98)}
-input,select,textarea{transition:border-color .2s ease,box-shadow .2s ease}input:focus,select:focus,textarea:focus{outline:none;border-color:#60a5fa;box-shadow:0 0 0 4px #2563eb18}
-.tag{display:inline-block;animation:badgeIn .35s ease both}
-.public-page{position:relative;overflow:hidden;background:linear-gradient(135deg,#0b1730 0%,#14213d 42%,#1d4ed8 100%);background-size:180% 180%;animation:gradientShift 12s ease infinite}
-.public-page:before,.public-page:after{content:"";position:absolute;pointer-events:none;border-radius:50%;filter:blur(2px)}
-.public-page:before{width:320px;height:320px;right:-130px;top:100px;background:#60a5fa20;animation:orbFloat 9s ease-in-out infinite}
-.public-page:after{width:250px;height:250px;left:-130px;bottom:80px;background:#38bdf820;animation:orbFloat 11s ease-in-out infinite reverse}
-.public-wrap{position:relative;z-index:1}.public-head .logo{letter-spacing:.5px;text-shadow:0 0 24px #60a5fa55}.public-head h1{animation:riseIn .65s both}.public-head p{animation:riseIn .8s both}
-.public-panel{animation:riseIn .65s both;transition:transform .25s ease,box-shadow .25s ease}.public-panel:hover{box-shadow:0 20px 55px #0003}
-.public-truck-wrap{width:min(420px,94%);margin:12px auto 0;padding:8px 0 0;filter:drop-shadow(0 12px 14px #0004)}.public-truck{display:block;width:100%;height:auto;animation:truckDrive 5s ease-in-out infinite;transform-origin:center}.truck-caption{font-size:10px;letter-spacing:2px;font-weight:800;color:#bfdbfe;margin-top:2px}.public-truck-wrap:after{content:"";display:block;height:2px;margin:0 auto;width:92%;background:repeating-linear-gradient(90deg,#ffffffb5 0 24px,transparent 24px 42px);animation:roadMove 1.3s linear infinite}
-.timeline-step.current:before{animation:dotPulse 1.8s ease-in-out infinite}
-.timeline-step.completed:before{box-shadow:0 0 0 4px #16a34a12}
-.hidden{animation:none!important}
-@keyframes riseIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-@keyframes numberPop{0%{opacity:.3;transform:scale(.86)}70%{transform:scale(1.06)}100%{opacity:1;transform:scale(1)}}
-@keyframes badgeIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
-@keyframes logoGlow{0%,100%{text-shadow:0 0 0 #2563eb00}50%{text-shadow:0 0 12px #60a5fa88}}
-@keyframes dotPulse{0%,100%{box-shadow:0 0 0 0 #2563eb22}50%{box-shadow:0 0 0 7px #2563eb12}}
-@keyframes orbFloat{0%,100%{transform:translate(0,0)}50%{transform:translate(-12px,-18px)}}
-@keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
-@keyframes truckDrive{0%,100%{transform:translateX(-8px) rotate(-1deg)}50%{transform:translateX(8px) rotate(1deg)}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition-duration:.01ms!important}}
-
-/* RAVELO BOLD EXPRESS — visual refresh only; all existing HTML/JS behavior preserved */
-:root{--navy:#101827;--blue:#ef4b24;--pale:#fff1eb;--bg:#f5f6f8;--text:#172033;--muted:#667085;--line:#e1e5eb;--ravelo-yellow:#ffc928;--ravelo-red:#ef4b24;--ravelo-ink:#101827;scroll-behavior:smooth}
-body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;background:var(--bg);color:var(--text)}
-button{border-radius:8px;background:var(--ravelo-red);font-weight:800;letter-spacing:.1px;box-shadow:0 4px 0 #b72f13;color:#fff;transition:transform .16s ease,filter .16s ease,box-shadow .16s ease}
-button:hover{transform:translateY(-2px);filter:brightness(1.04);box-shadow:0 6px 0 #b72f13}
-button:active{transform:translateY(1px);box-shadow:0 2px 0 #b72f13}
-.secondary{background:#fff;color:var(--ravelo-ink);border:1px solid #cfd5df;box-shadow:0 3px 0 #d9dde5}
-.secondary:hover{box-shadow:0 5px 0 #d9dde5}
-.danger{background:#b42318;box-shadow:0 4px 0 #7a1710}
-input,select,textarea{border:1px solid #cbd2dd;border-radius:8px;background:#fff;color:#172033}
-input:focus,select:focus,textarea:focus{outline:3px solid #ef4b2429;border-color:var(--ravelo-red);box-shadow:none}
-.login-wrap{background:linear-gradient(135deg,#101827 0%,#18263e 60%,#ef4b24 160%);position:relative;overflow:hidden}
-.login-wrap:before{content:"RAVELO / EXPRESS";position:absolute;left:-18px;bottom:8%;font-size:clamp(42px,10vw,110px);font-weight:1000;letter-spacing:-.06em;color:#ffffff08;white-space:nowrap;transform:rotate(-7deg);pointer-events:none}
-.login{position:relative;border:1px solid #ffffffaa;border-radius:18px;box-shadow:0 24px 70px #0005;border-top:6px solid var(--ravelo-yellow)}
-.logo{font-weight:1000;letter-spacing:-.7px;color:var(--ravelo-ink)}
-.logo span{color:var(--ravelo-red);animation:none;text-shadow:none}
-.sidebar{background:var(--ravelo-ink);border-right:5px solid var(--ravelo-red);box-shadow:8px 0 30px #10182712}
-.sidebar:after{background:#ef4b2418;filter:none;animation:none}
-.sidebar .logo{font-size:23px;letter-spacing:-.6px}
-.nav{border-radius:8px;color:#d7deea;border-left:3px solid transparent;transition:background .15s ease,color .15s ease,border-color .15s ease,transform .15s ease}
-.nav.active,.nav:hover{background:#ffffff12;color:#fff;border-left-color:var(--ravelo-yellow);transform:translateX(2px)}
-.sidebottom{color:#aeb9ca;line-height:1.6}
-.main{padding:clamp(14px,2.5vw,30px)}
-.top{border-bottom:1px solid var(--line);padding-bottom:16px}
-.top h1{font-weight:900;letter-spacing:-.7px;color:var(--ravelo-ink)}
-.panel,.stat{border:1px solid var(--line);border-radius:12px;box-shadow:0 5px 18px #10182708;animation:none;transition:box-shadow .18s ease,border-color .18s ease}
-.panel:hover,.stat:hover{transform:none;box-shadow:0 10px 24px #10182712;border-color:#f4a18c}
-.panel h3{font-weight:900;letter-spacing:-.3px;color:var(--ravelo-ink)}
-.stat{position:relative;overflow:hidden;border-top:4px solid var(--ravelo-red)}
-.stat:nth-child(2){border-top-color:var(--ravelo-yellow)}.stat:nth-child(3){border-top-color:#344e78}.stat:nth-child(4){border-top-color:#d97706}.stat:nth-child(5){border-top-color:#16835d}
-.stat strong{color:var(--ravelo-ink);font-weight:950;animation:none}
-.dashboard-hero{background:linear-gradient(110deg,#101827 0%,#1c2d48 67%,#ef4b24 160%);border-radius:14px;border-bottom:5px solid var(--ravelo-yellow);box-shadow:0 12px 26px #10182720;animation:none}
-.dashboard-hero:before{background:#ffc92816;filter:none;animation:none}
-.hero-kicker{color:var(--ravelo-yellow);letter-spacing:2px;font-weight:900}
-.hero-copy h2{font-weight:950;letter-spacing:-1px}.hero-copy h2 span{color:var(--ravelo-yellow)}
-.hero-copy p{color:#e1e7f0}
-.hero-truck{filter:drop-shadow(0 8px 5px #0005);animation:none}
-.road-line{background:repeating-linear-gradient(90deg,#ffc928 0 22px,transparent 22px 38px);animation:none}
-th{background:#f0f2f5;color:#3e4a5f;font-weight:900;text-transform:uppercase;letter-spacing:.45px;font-size:10px}
-td{border-bottom:1px solid #e7eaf0}tr:hover td{background:#fffaf7}
-.tag{border-radius:6px;background:#e6efff;color:#1f4c87;font-weight:900;letter-spacing:.1px}.tag.delivered{background:#dff5e8;color:#176342}.tag.process{background:#fff0c2;color:#8a5300}.tag.problem{background:#fee4e2;color:#a21b16}
-.notice{background:#fff4d1;border-left:4px solid var(--ravelo-yellow);color:#654b08;border-radius:7px}
-.public-page{background:linear-gradient(145deg,#101827 0%,#17263d 58%,#ef4b24 170%);animation:none;position:relative}
-.public-page:before{background:#ef4b2416;filter:none;animation:none}.public-page:after{background:#ffc92812;filter:none;animation:none}
-.public-head{padding:24px 10px 20px}.public-head .logo{font-size:clamp(28px,5vw,40px);font-weight:1000;letter-spacing:-1px}.public-head .logo span{color:var(--ravelo-yellow)}
-.public-head h1{font-weight:950;letter-spacing:-1px}.public-head p{color:#e0e7f0}
-.public-truck-wrap{filter:drop-shadow(0 12px 10px #0004)}.public-truck{animation:none}.truck-caption{color:var(--ravelo-yellow);font-weight:900;letter-spacing:2px}.public-truck-wrap:after{background:repeating-linear-gradient(90deg,#ffc928 0 24px,transparent 24px 42px);animation:none}
-.public-panel{border-radius:13px;border:1px solid #ffffffa6;border-top:4px solid var(--ravelo-yellow);box-shadow:0 18px 42px #0002;animation:none;transition:box-shadow .18s ease}.public-panel:hover{box-shadow:0 18px 42px #0003}
-.public-panel h2,.public-panel h3{font-weight:900;letter-spacing:-.5px;color:var(--ravelo-ink)}
-.result-item{background:#f5f6f8;border:1px solid #e3e7ee;border-radius:8px}.result-item strong{font-weight:850;color:#172033}
-.timeline{border-left:3px solid #f6b7a6}.timeline-step:before{border-color:#f5d4cc}.timeline-step.current:before{background:var(--ravelo-red);border-color:#ffd4c8;box-shadow:0 0 0 4px #ef4b2418;animation:none}.timeline-step.completed:before{background:#16835d;border-color:#dff5e8;box-shadow:none}.timeline-step.completed .timeline-label{background:#dff5e8;color:#176342}.timeline-step.current .timeline-label{background:#ffe1d8;color:#a93217}
-.public-footer{color:#dfe5ee}
-/* Mobile: keep admin navigation, forms and tables usable on phone */
-@media(max-width:850px){.sidebar{border-right:0;border-bottom:4px solid var(--ravelo-red);gap:6px}.sidebar .logo{font-size:21px}.nav{border-left:0;border-bottom:2px solid transparent}.nav.active,.nav:hover{border-bottom-color:var(--ravelo-yellow);border-left-color:transparent;transform:none}.main{padding:14px}.top{align-items:flex-start}.dashboard-hero{gap:8px}.hero-road{min-width:90px}}
-@media(max-width:480px){.public-page{padding:14px 10px 28px}.public-head{padding:18px 5px}.public-panel{padding:15px}.public-form{gap:9px}.public-form input{min-height:46px}.public-form button{min-height:46px}.login{padding:24px 20px}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat{padding:12px}.stat small{font-size:11px}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
-
-
-/* Ravelo Logistic: navy-orange mobile polish + light truck motion */
-:root{--ravelo-ink:#eaf2ff;--ravelo-red:#f97316;--ravelo-yellow:#fb923c;--ravelo-navy:#06152b}
-body{background:#06152b;color:#eaf2ff}
-.sidebar{background:linear-gradient(180deg,#06152b,#0b2342);border-right:1px solid #173b60}
-.main{background:linear-gradient(145deg,#07172d,#0a1d36);color:#eaf2ff}
-.card,.panel,.table-wrap,.section-card,.stat,.dashboard-card{background:#0b2342!important;color:#eaf2ff!important;border:1px solid #21466c!important;box-shadow:0 12px 28px #0003}
-th{background:#102f52!important;color:#f8fafc!important}td{color:#e2ecf8;border-bottom-color:#1c3a5b!important}tr:hover td{background:#102f52!important}
-input,select,textarea{background:#0b2342!important;color:#f8fafc!important;border-color:#2c5277!important}input::placeholder,textarea::placeholder{color:#a8bdd5}
-button{background:linear-gradient(100deg,#f97316,#fb923c);color:#fff;box-shadow:0 5px 14px #f9731625}
-.secondary{background:#173454!important;color:#eaf2ff!important;border:1px solid #315575}
-.dashboard-hero{background:linear-gradient(110deg,#06152b 0%,#123d6b 58%,#f97316 160%)}
-.public-page{background:radial-gradient(ellipse at 85% 10%,#123e6c 0,transparent 40%),linear-gradient(145deg,#06152b,#0a2341 65%,#102e4b);color:#eaf2ff}
-.public-panel{background:linear-gradient(145deg,#0c2645,#081b32)!important;color:#eaf2ff;border:1px solid #244b70!important;border-top:3px solid #f97316!important}
-.public-panel h2,.public-panel h3{color:#f8fafc!important}.public-panel .sub,.public-head p{color:#c6d8ed!important}
-.public-truck-wrap{overflow:hidden;position:relative;padding-bottom:12px}
-.public-truck{width:min(100%,480px);height:auto;animation:truckCruise 5s ease-in-out infinite alternate;transform-origin:center bottom}
-.public-truck-wrap:after{content:"";position:absolute;left:0;right:0;bottom:4px;height:4px;border-radius:8px;background:repeating-linear-gradient(90deg,#fb923c 0 24px,transparent 24px 45px);animation:roadMove .7s linear infinite;opacity:.8}
-.truck-caption{font-size:11px;color:#fb923c;letter-spacing:1.5px}
-@keyframes truckCruise{from{transform:translateX(-9px)}to{transform:translateX(9px)}}
-@keyframes roadMove{from{background-position:0 0}to{background-position:-45px 0}}
-.contact-link{display:flex;align-items:center;gap:12px;padding:13px;margin-top:10px;border:1px solid #25496d;border-radius:12px;background:#0b2342;color:#f8fafc;text-decoration:none;transition:transform .18s,border-color .18s}
-.contact-link:hover{transform:translateY(-2px);border-color:#f97316}.contact-link strong,.contact-link small{display:block}.contact-link small{color:#bcd0e6;margin-top:4px;overflow-wrap:anywhere}.contact-icon{display:grid;place-items:center;flex:0 0 38px;height:38px;border-radius:11px;background:#f97316;color:white;font-weight:900}.contact-note{font-size:12px;color:#a9c0d9;margin:14px 0 0}
-@media(max-width:480px){.public-truck{width:112%;max-width:none;margin-left:-6%}.contact-panel{padding:16px}.contact-link{padding:12px}}
-@media(prefers-reduced-motion:reduce){.public-truck,.public-truck-wrap:after{animation:none!important}}
-
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-<!-- Ilustrasi vektor truk Ravelo: menghadap ke kanan, sehingga arah maju konsisten. -->
+<!-- Simbol logo Ravelo digunakan ulang pada header, login, sidebar, dan bak truk -->
 <svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" aria-hidden="true" style="position:absolute;overflow:hidden">
+ <symbol id="raveloMark" viewBox="0 0 100 100">
+  <path d="M15 12H59C81 12 91 24 91 42C91 58 81 68 66 71L88 91H61L37 66V91H15Z" fill="#ff7a1a"/>
+  <path d="M37 33V49H58C65 49 69 46 69 41C69 36 65 33 58 33Z" fill="#0b1730"/>
+  <path d="M11 20H24V83H11Z" fill="#ffffff"/>
+  <path d="M30 20H59C77 20 85 29 85 42C85 53 78 61 65 64L82 81H62L41 59H30Z" fill="#ffffff"/>
+  <path d="M42 33V48H58C65 48 69 46 69 40C69 35 65 33 58 33Z" fill="#0b1730"/>
+  <path d="M10 88H75" stroke="#ff7a1a" stroke-width="7" stroke-linecap="round"/>
+ </symbol>
  <symbol id="raveloTruck" viewBox="0 0 420 170">
   <defs>
-   <linearGradient id="containerPaint" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1e3a5f"/><stop offset="1" stop-color="#071a33"/></linearGradient>
+   <linearGradient id="containerPaint" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#173b78"/><stop offset="1" stop-color="#07162f"/></linearGradient>
    <linearGradient id="cabPaint" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#3b82f6"/><stop offset=".55" stop-color="#1454bd"/><stop offset="1" stop-color="#0b2d69"/></linearGradient>
    <linearGradient id="glassPaint" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#dff6ff"/><stop offset="1" stop-color="#6ba9d9"/></linearGradient>
   </defs>
-  <!-- Kontainer berusuk, detail sudut dan branding -->
-  <path d="M18 24 Q18 18 25 18 H250 V121 H18 Z" fill="url(#containerPaint)" stroke="#f97316" stroke-width="2"/>
-  <path d="M28 28V112 M45 28V112 M62 28V112 M79 28V112 M96 28V112 M113 28V112 M130 28V112 M147 28V112 M164 28V112 M181 28V112 M198 28V112 M215 28V112 M232 28V112" stroke="#f97316" stroke-opacity=".7" stroke-width="2"/>
-  <path d="M24 32H244 M24 108H244" stroke="#93c5fd" stroke-width="2" opacity=".8"/>
-  <rect x="73" y="54" width="128" height="34" rx="4" fill="#f97316" opacity=".98"/>
-  <text x="137" y="68" font-family="Arial, sans-serif" font-size="10" font-weight="800" text-anchor="middle" fill="#fff">RAVELO</text><text x="137" y="80" font-family="Arial, sans-serif" font-size="8" font-weight="700" letter-spacing="1.5" text-anchor="middle" fill="#ffffff">LOGISTIC</text>
-  <!-- Sasis navy dengan aksen oranye Ravelo -->
-  <path d="M12 121H278L294 132H18Z" fill="#f97316" stroke="#c2410c" stroke-width="2"/>
-  <rect x="24" y="130" width="250" height="8" rx="2" fill="#0b1730"/><path d="M32 134H78 M88 134H134 M144 134H190 M200 134H246" stroke="#fb923c" stroke-width="2"/>
-  <!-- Kabin depan menghadap ke kanan -->
+  <!-- Kontainer navy dengan rangka dan rusuk oranye -->
+  <path d="M18 24Q18 18 25 18H250V121H18Z" fill="url(#containerPaint)" stroke="#ff7a1a" stroke-width="3"/>
+  <path d="M39 28V111M56 28V111M73 28V111M90 28V111M107 28V111M124 28V111M141 28V111M158 28V111M175 28V111M192 28V111M209 28V111M226 28V111M243 28V111" stroke="#ff7a1a" stroke-opacity=".55" stroke-width="2"/>
+  <path d="M24 32H244M24 108H244" stroke="#93c5fd" stroke-opacity=".7" stroke-width="2"/>
+  <!-- Logo di tengah bak -->
+  <rect x="64" y="49" width="146" height="47" rx="5" fill="#07162f" stroke="#ff7a1a" stroke-width="1.5"/>
+  <use href="#raveloMark" x="70" y="56" width="34" height="34"/>
+  <text x="151" y="69" font-family="Arial,sans-serif" font-size="11" font-weight="900" text-anchor="middle" fill="#ffffff">RAVELO</text>
+  <text x="157" y="83" font-family="Arial,sans-serif" font-size="8" font-weight="700" letter-spacing="1.5" text-anchor="middle" fill="#ff7a1a">LOGISTIC</text>
+  <!-- Pintu belakang dan pengunci -->
+  <path d="M18 24V121M31 25V119" stroke="#ff7a1a" stroke-width="3"/>
+  <path d="M23 34H29M23 54H29M23 74H29M23 94H29M23 114H29" stroke="#f8fafc" stroke-width="2"/>
+  <!-- Sasis dan bumper -->
+  <path d="M12 121H278L294 132H18Z" fill="#ff7a1a" stroke="#c2410c" stroke-width="2"/>
+  <rect x="24" y="130" width="250" height="8" rx="2" fill="#14213d"/>
+  <path d="M32 134H78M88 134H134M144 134H190M200 134H246" stroke="#fb923c" stroke-width="2"/>
+  <!-- Kabin biru -->
   <path d="M250 48H291Q301 48 308 59L330 91L354 98Q362 101 362 111V127H244V61Q244 48 250 48Z" fill="url(#cabPaint)" stroke="#0b2d69" stroke-width="2"/>
   <path d="M286 55H292Q298 56 303 64L318 85H286Z" fill="url(#glassPaint)" stroke="#dbeafe" stroke-width="2"/>
   <path d="M250 57H277V86H250Z" fill="#93c5fd" stroke="#dbeafe" stroke-width="2"/>
-  <path d="M282 91H322L342 99H282Z" fill="#0b2d69" opacity=".75"/>
+  <path d="M282 91H322L342 99H282Z" fill="#0b2d69" opacity=".8"/>
   <rect x="251" y="96" width="23" height="5" rx="2" fill="#fbbf24"/><rect x="249" y="106" width="8" height="7" rx="2" fill="#fef3c7"/>
   <path d="M329 101L356 107V123H330Z" fill="#123c83"/><rect x="350" y="108" width="13" height="9" rx="2" fill="#fef3c7"/>
   <path d="M354 124H370V135H348Z" fill="#dc2626"/><rect x="358" y="127" width="13" height="5" rx="1" fill="#fca5a5"/>
-  <!-- Tangki, detail pintu dan tangga -->
-  <rect x="256" y="114" width="22" height="7" rx="2" fill="#94a3b8"/><path d="M278 114V124 M282 114V124" stroke="#e2e8f0" stroke-width="2"/>
-  <!-- Roda dan velg dengan rotasi halus -->
-  <g><circle cx="70" cy="128" r="23" fill="#101827" stroke="#374151" stroke-width="4"/><circle cx="70" cy="128" r="12" fill="#9ca3af" stroke="#e5e7eb" stroke-width="3"/><circle cx="70" cy="128" r="4" fill="#374151"/><path d="M70 118V138 M60 128H80 M63 121L77 135 M77 121L63 135" stroke="#4b5563" stroke-width="2"/><animateTransform attributeName="transform" type="rotate" from="0 70 128" to="360 70 128" dur="1.15s" repeatCount="indefinite"/></g>
-  <g><circle cx="215" cy="128" r="23" fill="#101827" stroke="#374151" stroke-width="4"/><circle cx="215" cy="128" r="12" fill="#9ca3af" stroke="#e5e7eb" stroke-width="3"/><circle cx="215" cy="128" r="4" fill="#374151"/><path d="M215 118V138 M205 128H225 M208 121L222 135 M222 121L208 135" stroke="#4b5563" stroke-width="2"/><animateTransform attributeName="transform" type="rotate" from="0 215 128" to="360 215 128" dur="1.15s" repeatCount="indefinite"/></g>
-  <g><circle cx="320" cy="130" r="22" fill="#101827" stroke="#374151" stroke-width="4"/><circle cx="320" cy="130" r="11" fill="#9ca3af" stroke="#e5e7eb" stroke-width="3"/><circle cx="320" cy="130" r="4" fill="#374151"/><path d="M320 121V139 M311 130H329 M314 124L326 136 M326 124L314 136" stroke="#4b5563" stroke-width="2"/><animateTransform attributeName="transform" type="rotate" from="0 320 130" to="360 320 130" dur="1.15s" repeatCount="indefinite"/></g>
+  <rect x="256" y="114" width="22" height="7" rx="2" fill="#94a3b8"/><path d="M278 114V124M282 114V124" stroke="#e2e8f0" stroke-width="2"/>
+  <!-- Roda dengan velg berputar -->
+  <g><circle cx="70" cy="128" r="23" fill="#101827" stroke="#374151" stroke-width="4"/><circle cx="70" cy="128" r="12" fill="#cbd5e1" stroke="#f8fafc" stroke-width="3"/><circle cx="70" cy="128" r="4" fill="#374151"/><path d="M70 118V138M60 128H80M63 121L77 135M77 121L63 135" stroke="#4b5563" stroke-width="2"/><animateTransform attributeName="transform" type="rotate" from="0 70 128" to="360 70 128" dur="1.15s" repeatCount="indefinite"/></g>
+  <g><circle cx="215" cy="128" r="23" fill="#101827" stroke="#374151" stroke-width="4"/><circle cx="215" cy="128" r="12" fill="#cbd5e1" stroke="#f8fafc" stroke-width="3"/><circle cx="215" cy="128" r="4" fill="#374151"/><path d="M215 118V138M205 128H225M208 121L222 135M222 121L208 135" stroke="#4b5563" stroke-width="2"/><animateTransform attributeName="transform" type="rotate" from="0 215 128" to="360 215 128" dur="1.15s" repeatCount="indefinite"/></g>
+  <g><circle cx="320" cy="130" r="22" fill="#101827" stroke="#374151" stroke-width="4"/><circle cx="320" cy="130" r="11" fill="#cbd5e1" stroke="#f8fafc" stroke-width="3"/><circle cx="320" cy="130" r="4" fill="#374151"/><path d="M320 121V139M311 130H329M314 124L326 136M326 124L314 136" stroke="#4b5563" stroke-width="2"/><animateTransform attributeName="transform" type="rotate" from="0 320 130" to="360 320 130" dur="1.15s" repeatCount="indefinite"/></g>
   <path d="M8 148H385" stroke="#93c5fd" stroke-opacity=".45" stroke-width="2" stroke-dasharray="14 9"/>
  </symbol>
 </svg>
-<!-- Halaman publik: pelanggan bisa cek resi tanpa login -->
-<section id="publicPage" class="public-page">
-  <div class="public-wrap">
-    <header class="public-head">
-      <div class="logo">RAVELO <span>LOGISTIC</span></div>
-      <h1>Pengiriman Antar Kota</h1>
-      <p>Kirim barang lebih dekat, aman, dan terpercaya. Lacak perjalanan paket Anda dengan mudah.</p>
-      <div class="public-truck-wrap" aria-label="Ilustrasi truk kontainer Ravelo Logistic bergerak maju"><svg class="public-truck" viewBox="0 0 420 170" role="img" aria-label="Truk kontainer biru dan kuning Ravelo Logistic menghadap ke kanan"><use href="#raveloTruck"></use></svg><div class="truck-caption">DELIVERING TRUST • EVERY MILE</div></div>
-    </header>
-    <div class="public-panel">
-      <form id="publicTrackForm" class="public-form">
-        <input id="publicTrackNumber" placeholder="Masukkan nomor resi, contoh RVL12345678" aria-label="Nomor resi" required>
-        <button type="submit">Lacak Paket</button>
-      </form>
-      <div id="publicTrackResult" aria-live="polite"></div>
-    </div>
-    <div class="public-panel">
-      <b>Butuh bantuan?</b>
-      <p class="sub">Pastikan nomor resi diketik dengan benar. Informasi yang ditampilkan hanya informasi pelacakan yang diizinkan untuk pelanggan.</p>
-      <button type="button" class="secondary" id="adminLoginButton">Masuk Admin</button>
-    </div>
-    <section class="public-panel contact-panel" aria-label="Kontak Ravelo Logistic">
-      <h2>Hubungi Kami</h2>
-      <p class="sub">Perlu bantuan tentang pengiriman antar kota? Hubungi tim Ravelo Logistic.</p>
-      <a class="contact-link whatsapp-link" href="https://wa.me/6288263548831" target="_blank" rel="noopener noreferrer"><span class="contact-icon">WA</span><span><strong>WhatsApp / Telepon</strong><small>088263548831</small></span></a>
-      <a class="contact-link" href="mailto:ravelologistik@gmail.com"><span class="contact-icon">@</span><span><strong>Email</strong><small>ravelologistik@gmail.com</small></span></a>
-      <p class="contact-note">Layanan pengiriman antar kota dan wilayah sekitar.</p>
-    </section>
-    <div class="public-footer">© Ravelo Logistic · Antar Kota</div>
-  </div>
-</section>
-
+<section id="publicPage" class="public-page"><div class="public-wrap">
+<header class="public-head">
+ <div class="logo"><svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true"><use href="#raveloMark"/></svg><div>RAVELO <span>LOGISTIC</span></div></div>
+ <h1>Cek Resi Pengiriman</h1><p>Lacak status dan informasi perjalanan paket Anda.</p>
+ <div class="public-truck-wrap" aria-label="Ilustrasi truk kontainer Ravelo Logistic bergerak maju"><svg class="public-truck" viewBox="0 0 420 170" role="img" aria-label="Truk kontainer navy dan oranye Ravelo Logistic menghadap ke kanan"><use href="#raveloTruck"/></svg><div class="truck-caption">DELIVERING TRUST • EVERY MILE</div></div>
+</header>
+<div class="public-panel"><form id="publicTrackForm" class="public-form"><input id="publicTrackNumber" placeholder="Masukkan nomor resi, contoh RVL12345678" aria-label="Nomor resi" required><button type="submit">Lacak Paket</button></form><div id="publicTrackResult" aria-live="polite"></div></div>
+<div class="public-panel"><b>Butuh bantuan?</b><p class="sub">Pastikan nomor resi diketik dengan benar. Informasi yang ditampilkan hanya informasi pelacakan yang diizinkan untuk pelanggan.</p><button type="button" class="secondary" id="adminLoginButton">Masuk Admin</button></div>
+<div class="public-footer">© Ravelo Logistic</div>
+</div></section>
 <div id="loginWrap" class="login-wrap hidden"><form id="loginForm" class="login">
-<div class="logo">RAVELO <span>LOGISTIC</span></div><p class="sub">Sistem Informasi Manajemen Ekspedisi<br>Masuk untuk mengelola data paket dan pengiriman.</p>
+<div class="logo"><svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true"><use href="#raveloMark"/></svg><div>RAVELO <span>LOGISTIC</span></div></div>
+<p class="sub">Sistem Informasi Manajemen Ekspedisi<br>Masuk untuk mengelola data paket dan pengiriman.</p>
 <div class="field"><label>Email admin</label><input id="username" type="email" autocomplete="username" placeholder="Email admin" required></div>
 <div class="field"><label>Kata sandi</label><input id="password" type="password" autocomplete="current-password" placeholder="Kata sandi" required></div>
-<div id="loginError" class="error"></div><button class="full" type="submit">Masuk ke Dashboard</button><p class="muted">Gunakan email dan password akun admin yang dibuat di Supabase.</p>
-<button class="secondary full" type="button" id="backToTracking" style="margin-top:10px">Kembali ke Cek Resi</button>
+<div id="loginError" class="error"></div><button class="full" type="submit">Masuk ke Dashboard</button><p class="muted">Gunakan email dan password akun admin yang dibuat di Supabase.</p><button class="secondary full" type="button" id="backToTracking" style="margin-top:10px">Kembali ke Cek Resi</button>
 </form></div>
-
 <div id="app" class="app">
-<aside class="sidebar"><div class="logo">RAVELO <span>LOGISTIC</span></div>
+<aside class="sidebar"><div class="logo"><svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true"><use href="#raveloMark"/></svg><div>RAVELO <span>LOGISTIC</span></div></div>
 <button class="nav active" data-page="dashboard">▦ Dashboard</button><button class="nav" data-page="packages">▤ Data Paket</button><button class="nav" data-page="tracking">⌕ Lacak Paket</button><button class="nav" data-page="distribution">⇢ Distribusi</button><button class="nav" data-page="reports">▥ Laporan</button><button class="nav" data-page="about">ⓘ Tentang Sistem</button><div class="sidebottom">Prototipe sistem ekspedisi<br>Hubungkan dengan kebijakan akses Supabase yang aman.</div></aside>
 <main class="main"><div class="top"><div><h1 id="pageTitle">Dashboard</h1><div class="muted" id="pageSub">Ringkasan data dan aktivitas paket</div></div><button class="secondary" id="logout">Keluar Admin</button></div>
 <section id="page-dashboard">
-<div class="dashboard-hero"><div class="hero-copy"><span class="hero-kicker">RAVELO LOGISTIC • CONTROL CENTER</span><h2>Pengiriman Lebih Cepat,<br><span>Lebih Dekat.</span></h2><p>Pantau setiap paket dan kelola perjalanan dalam satu tempat.</p></div><div class="hero-road" aria-hidden="true"><span class="road-line"></span><svg class="hero-truck" viewBox="0 0 420 170" role="img" aria-label="Truk kontainer Ravelo Logistic menghadap ke kanan"><use href="#raveloTruck"></use></svg></div></div>
+<div class="dashboard-hero"><div class="hero-copy"><span class="hero-kicker">RAVELO LOGISTIC • CONTROL CENTER</span><h2>Pengiriman Lebih Cepat,<br><span>Lebih Dekat.</span></h2><p>Pantau setiap paket dan kelola perjalanan dalam satu tempat.</p></div><div class="hero-road" aria-hidden="true"><span class="road-line"></span><svg class="hero-truck" viewBox="0 0 420 170"><use href="#raveloTruck"/></svg></div></div>
 <div class="stats"><div class="stat"><small>Total Paket</small><strong id="statTotal">0</strong></div><div class="stat"><small>Dalam Proses</small><strong id="statProcess">0</strong></div><div class="stat"><small>Dalam Pengiriman</small><strong id="statShip">0</strong></div><div class="stat"><small>Tertunda</small><strong id="statDelayed">0</strong></div><div class="stat"><small>Terkirim</small><strong id="statDone">0</strong></div></div>
 <div class="grid2"><div class="panel"><h3>Aktivitas Paket Terbaru</h3><div id="recentTable" class="tablewrap"></div></div><div class="panel"><h3>Akses Cepat</h3><p class="sub">Kelola pengiriman dalam satu tempat.</p><button data-goto="packages">＋ Input Paket</button> <button class="secondary" data-goto="tracking">Lacak Resi</button><div class="notice" style="margin-top:18px">Pencarian publik menggunakan fungsi database khusus, bukan membaca seluruh tabel paket.</div></div></div>
 </section>
 <section id="page-packages" class="hidden"><div class="panel"><h3 id="formTitle">Input Paket Baru</h3><form id="packageForm"><div class="formgrid">
 <div class="field"><label>Nama pengirim *</label><input id="sender" required></div><div class="field"><label>Nama penerima *</label><input id="receiver" required></div>
-<div class="field"><label>Alamat detail penerima *</label><textarea id="recipient_address" required></textarea></div>
-<div class="field"><label>Nomor HP penerima *</label><input id="recipient_phone" type="tel" required placeholder="Contoh: 081234567890"></div>
+<div class="field"><label>Alamat detail penerima *</label><textarea id="recipient_address" required></textarea></div><div class="field"><label>Nomor HP penerima *</label><input id="recipient_phone" type="tel" required placeholder="Contoh: 081234567890"></div>
 <div class="field"><label>Kota asal *</label><input id="origin" required></div><div class="field"><label>Kota tujuan *</label><input id="destination" required></div>
 <div class="field"><label>Jenis paket</label><select id="kind"><option>Dokumen</option><option>Barang</option><option>Makanan</option><option>Lainnya</option></select></div>
 <div class="field"><label>Status</label><select id="status"><option>Diproses</option><option>Dalam Pengiriman</option><option>Terkirim</option><option>Tertunda</option></select></div>
-<div class="field"><label>Tanggal paket dikirim *</label><input id="dispatch_date" type="date" required></div>
-<div class="field"><label>Jam paket dikirim *</label><input id="dispatch_time" type="time" required></div>
-<div class="field"><label>Tanggal perkiraan tiba *</label><input id="estimated_arrival_date" type="date" required></div>
+<div class="field"><label>Tanggal paket dikirim *</label><input id="dispatch_date" type="date" required></div><div class="field"><label>Jam paket dikirim *</label><input id="dispatch_time" type="time" required></div><div class="field"><label>Tanggal perkiraan tiba *</label><input id="estimated_arrival_date" type="date" required></div>
 <div class="field wide actions"><button type="submit" id="saveBtn">Simpan Paket</button><button type="button" class="secondary hidden" id="cancelEdit">Batal Edit</button></div></div></form></div>
 <div class="panel"><div class="top"><div><h3>Daftar Paket</h3><div class="muted">Cari, ubah status, edit, atau hapus data paket.</div></div></div><div class="field"><input id="packageSearch" placeholder="Cari nomor resi, pengirim, penerima, tujuan..."></div><div id="packageTable" class="tablewrap"></div></div></section>
 <section id="page-tracking" class="hidden"><div class="panel"><h3>Lacak Paket Berdasarkan Nomor Resi</h3><form id="trackForm" class="formgrid"><div class="field"><label>Nomor resi</label><input id="trackNumber" placeholder="Contoh: RVL12345678" required></div><div class="field" style="align-self:end"><button type="submit">Lacak Paket</button></div></form><div id="trackResult"></div></div></section>
@@ -281,8 +159,7 @@ $('loginForm').addEventListener('submit',async e=>{
  e.preventDefault();
  if(!initSupabase())return;
  $('loginError').textContent='Memeriksa akun…';
- const email=$('username').value.trim();
- const password=$('password').value;
+ const email=$('username').value.trim();const password=$('password').value;
  const {data,error}=await sb.auth.signInWithPassword({email,password});
  if(error){$('loginError').textContent='Login gagal. Periksa email, password, atau verifikasi akun.';return;}
  if(!data.user || data.user.id!==ADMIN_USER_ID){await sb.auth.signOut();$('loginError').textContent='Akun ini tidak memiliki akses admin Ravelo Logistic.';return;}
@@ -317,50 +194,34 @@ $('cancelEdit').onclick=resetForm;
 window.editPackage=id=>{const p=packages.find(x=>String(x.id)===String(id));if(!p)return;editId=p.id;['sender','receiver','recipient_address','recipient_phone','origin','destination','kind','status','dispatch_date','dispatch_time','estimated_arrival_date'].forEach(k=>$(k).value=p[k]||'');$('formTitle').textContent='Edit Data Paket';$('saveBtn').textContent='Simpan Perubahan';$('cancelEdit').classList.remove('hidden');window.scrollTo({top:0,behavior:'smooth'});};
 window.deletePackage=async id=>{if(!initSupabase())return;if(confirm('Hapus data paket ini?')){const {error}=await sb.from('packages').delete().eq('id',id);if(error){console.error(error);alert('Gagal menghapus paket: '+error.message);return;}await loadPackages(false);}};
 window.changeStatus=async(id,status)=>{if(!initSupabase())return;const {error}=await sb.from('packages').update({status}).eq('id',id);if(error){console.error(error);alert('Gagal mengubah status: '+error.message);await loadPackages(false);return;}await loadPackages(false);};
-
 function renderTrackingCard(p,target){
  const raw=String(p.status||'Diproses').toLowerCase();
- const isDelivered=/terkirim|diterima|selesai/.test(raw);
- const isDelayed=/tertunda|kendala|gagal/.test(raw);
- const isTransit=/dalam pengiriman|dalam perjalanan|dikirim|dibawa kurir/.test(raw);
- const isProcess=/diproses|proses|tercatat/.test(raw);
+ const isDelivered=/terkirim|diterima|selesai/.test(raw);const isDelayed=/tertunda|kendala|gagal/.test(raw);const isTransit=/dalam pengiriman|dalam perjalanan|dikirim|dibawa kurir/.test(raw);const isProcess=/diproses|proses|tercatat/.test(raw);
  const escDate=v=>v?esc(v):'Belum tersedia';
  const steps=[
-  {title:'Paket tercatat',done:true,desc:`Nomor resi ${esc(p.resi)}${p.date?' · '+esc(p.date):''}`},
-  {title:'Dalam proses pengiriman',done:isProcess||isTransit||isDelayed||isDelivered,desc:isProcess?'Paket sedang diproses.':(isTransit||isDelayed||isDelivered)?'Tahap proses pengiriman telah dilewati.':'Menunggu pembaruan status dari admin.'},
-  {title:'Dalam perjalanan',done:isTransit||isDelayed||isDelivered,desc:isTransit?'Paket sedang menuju kota tujuan.':(isDelayed?'Paket mengalami kendala dalam perjalanan.':isDelivered?'Paket telah melewati tahap perjalanan.':'Menunggu konfirmasi keberangkatan dari admin.')},
-  {title:'Tertunda',done:isDelayed,skipped:!isDelayed&&!isDelivered&&false,desc:isDelayed?'Status tertunda: '+esc(p.status):isDelivered?'Tidak ada penundaan yang tercatat; tahap ini dilewati.':'Tahap opsional — hanya aktif jika terjadi kendala.'},
-  {title:'Terkirim',done:isDelivered,desc:isDelivered?'Paket telah dinyatakan terkirim.':'Belum dikonfirmasi terkirim.'}
+ {title:'Paket tercatat',done:true,desc:`Nomor resi ${esc(p.resi)}${p.date?' · '+esc(p.date):''}`},
+ {title:'Dalam proses pengiriman',done:isProcess||isTransit||isDelayed||isDelivered,desc:isProcess?'Paket sedang diproses.':(isTransit||isDelayed||isDelivered)?'Tahap proses pengiriman telah dilewati.':'Menunggu pembaruan status dari admin.'},
+ {title:'Dalam perjalanan',done:isTransit||isDelayed||isDelivered,desc:isTransit?'Paket sedang menuju kota tujuan.':(isDelayed?'Paket mengalami kendala dalam perjalanan.':isDelivered?'Paket telah melewati tahap perjalanan.':'Menunggu konfirmasi keberangkatan dari admin.')},
+ {title:'Tertunda',done:isDelayed,skipped:false,desc:isDelayed?'Status tertunda: '+esc(p.status):isDelivered?'Tidak ada penundaan yang tercatat; tahap ini dilewati.':'Tahap opsional — hanya aktif jika terjadi kendala.'},
+ {title:'Terkirim',done:isDelivered,desc:isDelivered?'Paket telah dinyatakan terkirim.':'Belum dikonfirmasi terkirim.'}
  ];
- // Jika paket sudah terkirim dan tidak pernah tertunda, tampilkan tahap tertunda sebagai dilewati.
  if(isDelivered&&!isDelayed){steps[3].skipped=true;steps[3].desc='Tidak ada kendala yang tercatat; tahap ini dilewati.';}
- // Tentukan status aktif agar seluruh tahap tetap terlihat, termasuk tahap yang dilewati.
  let activeIndex=isDelivered?4:isDelayed?3:isTransit?2:isProcess?1:0;
- steps.forEach((st,i)=>{st.current=i===activeIndex&&!st.done; if(i===activeIndex&&isDelivered)st.current=true;});
+ steps.forEach((st,i)=>{st.current=i===activeIndex&&!st.done;if(i===activeIndex&&isDelivered)st.current=true;});
  const history=steps.map((st,i)=>`<div class="timeline-step ${st.done?'completed':''} ${st.current?'current':''} ${st.skipped?'skipped':''}"><div class="timeline-title"><b>${st.title}</b><span class="timeline-label">${st.skipped?'Dilewati':st.done?'Selesai':st.current?'Status saat ini':'Menunggu'}</span></div><div class="muted">${st.desc}</div>${i===0&&p.dispatch_date?`<div class="muted">Tanggal dikirim: ${esc(p.dispatch_date)}${p.dispatch_time?' · Jam: '+esc(p.dispatch_time):''}</div>`:''}${i===4&&p.estimated_arrival_date&&!isDelivered?`<div class="muted">Perkiraan tiba: ${esc(p.estimated_arrival_date)}</div>`:''}</div>`).join('');
- const html=`<div class="panel" style="margin-top:18px"><h2 style="margin-top:0">${esc(p.resi)}</h2><p>${badge(p.status)}</p><div class="result-grid">
- <div class="result-item"><small>Kota asal</small><strong>${esc(p.origin||'-')}</strong></div>
- <div class="result-item"><small>Kota tujuan</small><strong>${esc(p.destination||'-')}</strong></div>
- <div class="result-item"><small>Tanggal paket dikirim</small><strong>${escDate(p.dispatch_date)}</strong></div>
- <div class="result-item"><small>Jam paket dikirim</small><strong>${escDate(p.dispatch_time)}</strong></div>
- <div class="result-item"><small>Tanggal perkiraan tiba</small><strong>${escDate(p.estimated_arrival_date)}</strong></div>
- <div class="result-item"><small>Jenis paket</small><strong>${esc(p.kind||'-')}</strong></div></div>
- <section class="panel" style="margin-top:18px;margin-bottom:0;box-shadow:none;border:1px solid #e5e7eb"><h3 style="margin-top:0">Riwayat Perjalanan Paket</h3><p class="muted">Semua tahap ditampilkan berurutan. Tahap Tertunda dilewati jika tidak ada kendala.</p><div class="timeline">${history}</div></section></div>`;
- target.innerHTML=html;
+ target.innerHTML=`<div class="panel" style="margin-top:18px"><h2 style="margin-top:0">${esc(p.resi)}</h2><p>${badge(p.status)}</p><div class="result-grid"><div class="result-item"><small>Kota asal</small><strong>${esc(p.origin||'-')}</strong></div><div class="result-item"><small>Kota tujuan</small><strong>${esc(p.destination||'-')}</strong></div><div class="result-item"><small>Tanggal paket dikirim</small><strong>${escDate(p.dispatch_date)}</strong></div><div class="result-item"><small>Jam paket dikirim</small><strong>${escDate(p.dispatch_time)}</strong></div><div class="result-item"><small>Tanggal perkiraan tiba</small><strong>${escDate(p.estimated_arrival_date)}</strong></div><div class="result-item"><small>Jenis paket</small><strong>${esc(p.kind||'-')}</strong></div></div><section class="panel" style="margin-top:18px;margin-bottom:0;box-shadow:none;border:1px solid #e5e7eb"><h3 style="margin-top:0">Riwayat Perjalanan Paket</h3><p class="muted">Semua tahap ditampilkan berurutan. Tahap Tertunda dilewati jika tidak ada kendala.</p><div class="timeline">${history}</div></section></div>`;
 }
-// Tracking publik memanggil RPC yang hanya mengembalikan kolom yang aman untuk publik.
-// SQL fungsi RPC disertakan pada petunjuk setelah file ini.
 async function publicTrack(resi,target){
  target.innerHTML='<p class="muted">Sedang mencari paket…</p>';
  if(!initSupabase()){target.innerHTML='<p class="error">Koneksi database belum tersedia.</p>';return;}
  const {data,error}=await sb.rpc('track_package',{tracking_resi:resi});
  if(error){console.error('Tracking RPC error:',error);target.innerHTML='<p class="error">Fitur cek resi belum terhubung. Admin perlu menyiapkan fungsi tracking di Supabase terlebih dahulu.</p>';return;}
- const p=Array.isArray(data)?data[0]:data;
- if(!p){target.innerHTML='<p class="error">Nomor resi tidak ditemukan. Periksa kembali nomor resi.</p>';return;}
- renderTrackingCard(p,target);
+ const p=Array.isArray(data)?data[0]:data;if(!p){target.innerHTML='<p class="error">Nomor resi tidak ditemukan. Periksa kembali nomor resi.</p>';return;}renderTrackingCard(p,target);
 }
 $('publicTrackForm').addEventListener('submit',e=>{e.preventDefault();const resi=$('publicTrackNumber').value.trim().toUpperCase();if(resi)publicTrack(resi,$('publicTrackResult'));});
-$('trackForm').addEventListener('submit',async e=>{e.preventDefault();const resi=$('trackNumber').value.trim().toUpperCase();if(resi)publicTrack(resi,$('trackResult'));});
-$('exportCsv').onclick=()=>{const headers=['Nomor Resi','Pengirim','Penerima','Kota Asal','Kota Tujuan','Jenis Paket','Status','Tanggal Paket Dikirim','Jam Paket Dikirim','Tanggal Perkiraan Tiba'];const rows=packages.map(p=>[p.resi,p.sender,p.receiver,p.origin,p.destination,p.kind,p.status,p.dispatch_date,p.dispatch_time,p.estimated_arrival_date]);const csv=[headers,...rows].map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\\r\\n');const blob=new Blob(['\\ufeff'+csv],{type:'text/csv;charset=utf-8;'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='laporan-ravelo-logistic.csv';a.click();URL.revokeObjectURL(a.href);};
+$('trackForm').addEventListener('submit',e=>{e.preventDefault();const resi=$('trackNumber').value.trim().toUpperCase();if(resi)publicTrack(resi,$('trackResult'));});
+$('exportCsv').onclick=()=>{const headers=['Nomor Resi','Pengirim','Penerima','Kota Asal','Kota Tujuan','Jenis Paket','Status','Tanggal Paket Dikirim','Jam Paket Dikirim','Tanggal Perkiraan Tiba'];const rows=packages.map(p=>[p.resi,p.sender,p.receiver,p.origin,p.destination,p.kind,p.status,p.dispatch_date,p.dispatch_time,p.estimated_arrival_date]);const csv=[headers,...rows].map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\r\n');const blob=new Blob(['\ufeff'+csv],{type:'text/csv;charset=utf-8;'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='laporan-ravelo-logistic.csv';a.click();URL.revokeObjectURL(a.href);};
 render();
-</script></body></html>
+</script>
+</body>
+</html>
