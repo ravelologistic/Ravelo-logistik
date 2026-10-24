@@ -10,7 +10,7 @@
 button,input,select,textarea{font:inherit}button{cursor:pointer;border:0;border-radius:9px;padding:10px 14px;background:var(--blue);color:white;font-weight:700}
 input,select,textarea{width:100%;padding:11px;border:1px solid #cbd5e1;border-radius:8px;background:white}textarea{min-height:82px;resize:vertical}
 .login-wrap{min-height:100vh;display:grid;place-items:center;padding:20px;background:linear-gradient(135deg,#0b1730,#1d4ed8)}
-.login{background:#fff;border-radius:18px;padding:30px;width:min(420px,100%);box-shadow:0 20px 60px #0003}
+.login{background:linear-gradient(145deg,#0c203b,#102b4b);color:#f8fafc;border:1px solid #284969;border-top:4px solid #ff7a1a;border-radius:22px;padding:30px;width:min(420px,100%);box-shadow:0 20px 60px #0005}
 .logo{display:flex;align-items:center;justify-content:center;gap:9px;font-size:25px;font-weight:900;letter-spacing:.3px;color:var(--navy)}
 .logo span{color:var(--orange)}
 .brand-mark{width:34px;height:34px;flex:0 0 34px;display:inline-block;vertical-align:middle}
@@ -38,6 +38,18 @@ button{transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;box-sha
 .public-panel input:focus,.public-panel select:focus,.public-panel textarea:focus{border-color:#ff9a4d;box-shadow:0 0 0 4px #ff7a1a20}
 .public-form button{background:linear-gradient(100deg,#ff7417,#ff963d);color:#fff;box-shadow:0 7px 18px #ff7a1a30}
 .public-panel .secondary{background:#173b5e;color:#f8fafc;border:1px solid #315575}
+/* Login admin navy-oranye dan bagian Hubungi Kami */
+.login .sub,.login .muted{color:#c5d5e8}
+.login .field label{color:#e7eef8}
+.login input{background:#0b2340;color:#f8fafc;border:1px solid #315575}
+.login input::placeholder{color:#a9bdd4}
+.login input:focus{border-color:#ff9a4d;box-shadow:0 0 0 4px #ff7a1a20}
+.login .full:not(.secondary){background:linear-gradient(100deg,#ff7417,#ff963d);color:#fff}
+.login .secondary{background:#173b5e;color:#f8fafc;border:1px solid #315575}
+.contact-card{display:flex;align-items:center;gap:14px;padding:14px 16px;margin:12px 0;border:1px solid #284969;border-radius:16px;background:#0b2340;color:#f8fafc;text-decoration:none;overflow-wrap:anywhere}
+.contact-icon{width:54px;height:54px;flex:0 0 54px;display:grid;place-items:center;border-radius:15px;background:#ff7a1a;color:#fff;font-weight:900;font-size:21px}
+.contact-card strong{display:block;margin-bottom:5px}.contact-card span{color:#c5d5e8}.contact-card:hover{border-color:#ff7a1a;transform:translateY(-2px)}
+.contact-note{color:#a9bdd4;font-size:13px;margin-top:18px}
 /* Tabel tetap bisa digeser di dalam panel, bukan memaksa seluruh halaman melebar */
 .main,.panel,.grid2,.grid2>* ,.tablewrap{min-width:0;max-width:100%}
 .tablewrap{width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
@@ -104,7 +116,11 @@ button{transition:transform .2s ease,box-shadow .2s ease,filter .2s ease;box-sha
 </header>
 <div class="public-panel"><form id="publicTrackForm" class="public-form"><input id="publicTrackNumber" placeholder="Masukkan nomor resi, contoh RVL12345678" aria-label="Nomor resi" required><button type="submit">Lacak Paket</button></form><div id="publicTrackResult" aria-live="polite"></div></div>
 <div class="public-panel"><b>Butuh bantuan?</b><p class="sub">Pastikan nomor resi diketik dengan benar. Informasi yang ditampilkan hanya informasi pelacakan yang diizinkan untuk pelanggan.</p><button type="button" class="secondary" id="adminLoginButton">Masuk Admin</button></div>
-<div class="public-footer">© Ravelo Logistic</div>
+<div class="public-panel contact-section" id="hubungiKami"><h2 style="margin:0 0 12px;font-size:25px">Hubungi Kami</h2><p class="sub">Perlu bantuan tentang pengiriman antar kota? Hubungi tim Ravelo Logistic.</p>
+<a class="contact-card" href="https://wa.me/6288263548831" target="_blank" rel="noopener noreferrer"><div class="contact-icon">WA</div><div><strong>WhatsApp / Telepon</strong><span>088263548831</span></div></a>
+<a class="contact-card" href="mailto:ravelologistik@gmail.com"><div class="contact-icon">@</div><div><strong>Email</strong><span>ravelologistik@gmail.com</span></div></a>
+<p class="contact-note">Layanan pengiriman antar kota dan wilayah sekitar.</p></div>
+<div class="public-footer">© Ravelo Logistic · Antar Kota</div>
 </div></section>
 <div id="loginWrap" class="login-wrap hidden"><form id="loginForm" class="login">
 <div class="logo"><svg class="brand-mark" viewBox="0 0 100 100" aria-hidden="true"><use href="#raveloMark"/></svg><div>RAVELO <span>LOGISTIC</span></div></div>
@@ -237,4 +253,4 @@ $('exportCsv').onclick=()=>{const headers=['Nomor Resi','Pengirim','Penerima','K
 render();
 </script>
 </body>
-                                                                                                                                                                                                                                                </html>
+                                                                                                                           </html>
